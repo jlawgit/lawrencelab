@@ -5,9 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Lawrence Lab</title>
 <meta name="description" content="Precision polymer engineering. Cain Department of Chemical Engineering, Louisiana State University.">
+<meta name="color-scheme" content="light dark">
 <link rel="stylesheet" href="style.css">
+<script src="site.js" defer></script>
 </head>
-<body>
+<body class="home">
 
 <header class="top"><div class="grid">
   <div class="wordmark"><a href="index.html">Lawrence Lab</a><span>Louisiana State University</span></div>
@@ -22,62 +24,507 @@
 </div></header>
 
 <div class="hero grid">
-  <h1>Polymers without the average.</h1>
-  <p class="sub">We build polymers one molecule at a time, then use that precision to control
-  structure: at surfaces, on nanoparticles, and in imaging agents.</p>
-  <p class="where">
-    <strong>Cain Department of Chemical&nbsp;Engineering</strong>
-    Louisiana State University<br>
-    Baton Rouge, Louisiana
-  </p>
-</div>
-
-<div class="figwrap grid">
-  <figure><img src="images/architecture.png" alt="Coarse-grained molecular dynamics of disperse and discrete bottlebrush polymers at an interface."></figure>
-  <figcaption><b>Dispersity is not a detail.</b> Identical chemistry, two side-chain distributions.
-  The disperse brushes pack without order. The discrete ones align. Coarse-grained molecular
-  dynamics, air&ndash;water interface.</figcaption>
+  <div class="hero-text">
+    <p class="eyebrow">Precision polymer engineering</p>
+    <h1>Polymers without the average.</h1>
+    <p class="sub">We build polymers one molecule at a time, then use that precision to control
+    structure: at surfaces, on nanoparticles, and in imaging agents.</p>
+    <p class="where">Cain Department of Chemical&nbsp;Engineering<br>Louisiana State University</p>
+  </div>
+  <figure class="brushfig" aria-label="A bottlebrush polymer whose side chains switch between many lengths and one exact length.">
+    <svg class="brush" viewBox="0 0 560 360" role="img" aria-hidden="true">
+    <line class="bb" x1="28" y1="180" x2="532" y2="180"/>
+    <circle class="b" cx="46.0" cy="166" r="5.4" data-c="0u" data-k="0"/>
+    <circle class="b" cx="46.0" cy="153" r="5.4" data-c="0u" data-k="1"/>
+    <circle class="b" cx="46.0" cy="140" r="5.4" data-c="0u" data-k="2"/>
+    <circle class="b" cx="46.0" cy="127" r="5.4" data-c="0u" data-k="3"/>
+    <circle class="b" cx="46.0" cy="114" r="5.4" data-c="0u" data-k="4"/>
+    <circle class="b" cx="46.0" cy="101" r="5.4" data-c="0u" data-k="5"/>
+    <circle class="b off" cx="46.0" cy="88" r="5.4" data-c="0u" data-k="6"/>
+    <circle class="b off" cx="46.0" cy="75" r="5.4" data-c="0u" data-k="7"/>
+    <circle class="b off" cx="46.0" cy="62" r="5.4" data-c="0u" data-k="8"/>
+    <circle class="b off" cx="46.0" cy="49" r="5.4" data-c="0u" data-k="9"/>
+    <circle class="b off" cx="46.0" cy="36" r="5.4" data-c="0u" data-k="10"/>
+    <circle class="b" cx="46.0" cy="194" r="5.4" data-c="0d" data-k="0"/>
+    <circle class="b" cx="46.0" cy="207" r="5.4" data-c="0d" data-k="1"/>
+    <circle class="b" cx="46.0" cy="220" r="5.4" data-c="0d" data-k="2"/>
+    <circle class="b" cx="46.0" cy="233" r="5.4" data-c="0d" data-k="3"/>
+    <circle class="b" cx="46.0" cy="246" r="5.4" data-c="0d" data-k="4"/>
+    <circle class="b" cx="46.0" cy="259" r="5.4" data-c="0d" data-k="5"/>
+    <circle class="b off" cx="46.0" cy="272" r="5.4" data-c="0d" data-k="6"/>
+    <circle class="b off" cx="46.0" cy="285" r="5.4" data-c="0d" data-k="7"/>
+    <circle class="b off" cx="46.0" cy="298" r="5.4" data-c="0d" data-k="8"/>
+    <circle class="b off" cx="46.0" cy="311" r="5.4" data-c="0d" data-k="9"/>
+    <circle class="b off" cx="46.0" cy="324" r="5.4" data-c="0d" data-k="10"/>
+    <circle class="b" cx="73.5" cy="166" r="5.4" data-c="1u" data-k="0"/>
+    <circle class="b" cx="73.5" cy="153" r="5.4" data-c="1u" data-k="1"/>
+    <circle class="b" cx="73.5" cy="140" r="5.4" data-c="1u" data-k="2"/>
+    <circle class="b" cx="73.5" cy="127" r="5.4" data-c="1u" data-k="3"/>
+    <circle class="b" cx="73.5" cy="114" r="5.4" data-c="1u" data-k="4"/>
+    <circle class="b" cx="73.5" cy="101" r="5.4" data-c="1u" data-k="5"/>
+    <circle class="b off" cx="73.5" cy="88" r="5.4" data-c="1u" data-k="6"/>
+    <circle class="b off" cx="73.5" cy="75" r="5.4" data-c="1u" data-k="7"/>
+    <circle class="b off" cx="73.5" cy="62" r="5.4" data-c="1u" data-k="8"/>
+    <circle class="b off" cx="73.5" cy="49" r="5.4" data-c="1u" data-k="9"/>
+    <circle class="b off" cx="73.5" cy="36" r="5.4" data-c="1u" data-k="10"/>
+    <circle class="b" cx="73.5" cy="194" r="5.4" data-c="1d" data-k="0"/>
+    <circle class="b" cx="73.5" cy="207" r="5.4" data-c="1d" data-k="1"/>
+    <circle class="b" cx="73.5" cy="220" r="5.4" data-c="1d" data-k="2"/>
+    <circle class="b" cx="73.5" cy="233" r="5.4" data-c="1d" data-k="3"/>
+    <circle class="b" cx="73.5" cy="246" r="5.4" data-c="1d" data-k="4"/>
+    <circle class="b" cx="73.5" cy="259" r="5.4" data-c="1d" data-k="5"/>
+    <circle class="b off" cx="73.5" cy="272" r="5.4" data-c="1d" data-k="6"/>
+    <circle class="b off" cx="73.5" cy="285" r="5.4" data-c="1d" data-k="7"/>
+    <circle class="b off" cx="73.5" cy="298" r="5.4" data-c="1d" data-k="8"/>
+    <circle class="b off" cx="73.5" cy="311" r="5.4" data-c="1d" data-k="9"/>
+    <circle class="b off" cx="73.5" cy="324" r="5.4" data-c="1d" data-k="10"/>
+    <circle class="b" cx="101.0" cy="166" r="5.4" data-c="2u" data-k="0"/>
+    <circle class="b" cx="101.0" cy="153" r="5.4" data-c="2u" data-k="1"/>
+    <circle class="b" cx="101.0" cy="140" r="5.4" data-c="2u" data-k="2"/>
+    <circle class="b" cx="101.0" cy="127" r="5.4" data-c="2u" data-k="3"/>
+    <circle class="b" cx="101.0" cy="114" r="5.4" data-c="2u" data-k="4"/>
+    <circle class="b" cx="101.0" cy="101" r="5.4" data-c="2u" data-k="5"/>
+    <circle class="b off" cx="101.0" cy="88" r="5.4" data-c="2u" data-k="6"/>
+    <circle class="b off" cx="101.0" cy="75" r="5.4" data-c="2u" data-k="7"/>
+    <circle class="b off" cx="101.0" cy="62" r="5.4" data-c="2u" data-k="8"/>
+    <circle class="b off" cx="101.0" cy="49" r="5.4" data-c="2u" data-k="9"/>
+    <circle class="b off" cx="101.0" cy="36" r="5.4" data-c="2u" data-k="10"/>
+    <circle class="b" cx="101.0" cy="194" r="5.4" data-c="2d" data-k="0"/>
+    <circle class="b" cx="101.0" cy="207" r="5.4" data-c="2d" data-k="1"/>
+    <circle class="b" cx="101.0" cy="220" r="5.4" data-c="2d" data-k="2"/>
+    <circle class="b" cx="101.0" cy="233" r="5.4" data-c="2d" data-k="3"/>
+    <circle class="b" cx="101.0" cy="246" r="5.4" data-c="2d" data-k="4"/>
+    <circle class="b" cx="101.0" cy="259" r="5.4" data-c="2d" data-k="5"/>
+    <circle class="b off" cx="101.0" cy="272" r="5.4" data-c="2d" data-k="6"/>
+    <circle class="b off" cx="101.0" cy="285" r="5.4" data-c="2d" data-k="7"/>
+    <circle class="b off" cx="101.0" cy="298" r="5.4" data-c="2d" data-k="8"/>
+    <circle class="b off" cx="101.0" cy="311" r="5.4" data-c="2d" data-k="9"/>
+    <circle class="b off" cx="101.0" cy="324" r="5.4" data-c="2d" data-k="10"/>
+    <circle class="b" cx="128.5" cy="166" r="5.4" data-c="3u" data-k="0"/>
+    <circle class="b" cx="128.5" cy="153" r="5.4" data-c="3u" data-k="1"/>
+    <circle class="b" cx="128.5" cy="140" r="5.4" data-c="3u" data-k="2"/>
+    <circle class="b" cx="128.5" cy="127" r="5.4" data-c="3u" data-k="3"/>
+    <circle class="b" cx="128.5" cy="114" r="5.4" data-c="3u" data-k="4"/>
+    <circle class="b" cx="128.5" cy="101" r="5.4" data-c="3u" data-k="5"/>
+    <circle class="b off" cx="128.5" cy="88" r="5.4" data-c="3u" data-k="6"/>
+    <circle class="b off" cx="128.5" cy="75" r="5.4" data-c="3u" data-k="7"/>
+    <circle class="b off" cx="128.5" cy="62" r="5.4" data-c="3u" data-k="8"/>
+    <circle class="b off" cx="128.5" cy="49" r="5.4" data-c="3u" data-k="9"/>
+    <circle class="b off" cx="128.5" cy="36" r="5.4" data-c="3u" data-k="10"/>
+    <circle class="b" cx="128.5" cy="194" r="5.4" data-c="3d" data-k="0"/>
+    <circle class="b" cx="128.5" cy="207" r="5.4" data-c="3d" data-k="1"/>
+    <circle class="b" cx="128.5" cy="220" r="5.4" data-c="3d" data-k="2"/>
+    <circle class="b" cx="128.5" cy="233" r="5.4" data-c="3d" data-k="3"/>
+    <circle class="b" cx="128.5" cy="246" r="5.4" data-c="3d" data-k="4"/>
+    <circle class="b" cx="128.5" cy="259" r="5.4" data-c="3d" data-k="5"/>
+    <circle class="b off" cx="128.5" cy="272" r="5.4" data-c="3d" data-k="6"/>
+    <circle class="b off" cx="128.5" cy="285" r="5.4" data-c="3d" data-k="7"/>
+    <circle class="b off" cx="128.5" cy="298" r="5.4" data-c="3d" data-k="8"/>
+    <circle class="b off" cx="128.5" cy="311" r="5.4" data-c="3d" data-k="9"/>
+    <circle class="b off" cx="128.5" cy="324" r="5.4" data-c="3d" data-k="10"/>
+    <circle class="b" cx="156.0" cy="166" r="5.4" data-c="4u" data-k="0"/>
+    <circle class="b" cx="156.0" cy="153" r="5.4" data-c="4u" data-k="1"/>
+    <circle class="b" cx="156.0" cy="140" r="5.4" data-c="4u" data-k="2"/>
+    <circle class="b" cx="156.0" cy="127" r="5.4" data-c="4u" data-k="3"/>
+    <circle class="b" cx="156.0" cy="114" r="5.4" data-c="4u" data-k="4"/>
+    <circle class="b" cx="156.0" cy="101" r="5.4" data-c="4u" data-k="5"/>
+    <circle class="b off" cx="156.0" cy="88" r="5.4" data-c="4u" data-k="6"/>
+    <circle class="b off" cx="156.0" cy="75" r="5.4" data-c="4u" data-k="7"/>
+    <circle class="b off" cx="156.0" cy="62" r="5.4" data-c="4u" data-k="8"/>
+    <circle class="b off" cx="156.0" cy="49" r="5.4" data-c="4u" data-k="9"/>
+    <circle class="b off" cx="156.0" cy="36" r="5.4" data-c="4u" data-k="10"/>
+    <circle class="b" cx="156.0" cy="194" r="5.4" data-c="4d" data-k="0"/>
+    <circle class="b" cx="156.0" cy="207" r="5.4" data-c="4d" data-k="1"/>
+    <circle class="b" cx="156.0" cy="220" r="5.4" data-c="4d" data-k="2"/>
+    <circle class="b" cx="156.0" cy="233" r="5.4" data-c="4d" data-k="3"/>
+    <circle class="b" cx="156.0" cy="246" r="5.4" data-c="4d" data-k="4"/>
+    <circle class="b" cx="156.0" cy="259" r="5.4" data-c="4d" data-k="5"/>
+    <circle class="b off" cx="156.0" cy="272" r="5.4" data-c="4d" data-k="6"/>
+    <circle class="b off" cx="156.0" cy="285" r="5.4" data-c="4d" data-k="7"/>
+    <circle class="b off" cx="156.0" cy="298" r="5.4" data-c="4d" data-k="8"/>
+    <circle class="b off" cx="156.0" cy="311" r="5.4" data-c="4d" data-k="9"/>
+    <circle class="b off" cx="156.0" cy="324" r="5.4" data-c="4d" data-k="10"/>
+    <circle class="b" cx="183.5" cy="166" r="5.4" data-c="5u" data-k="0"/>
+    <circle class="b" cx="183.5" cy="153" r="5.4" data-c="5u" data-k="1"/>
+    <circle class="b" cx="183.5" cy="140" r="5.4" data-c="5u" data-k="2"/>
+    <circle class="b" cx="183.5" cy="127" r="5.4" data-c="5u" data-k="3"/>
+    <circle class="b" cx="183.5" cy="114" r="5.4" data-c="5u" data-k="4"/>
+    <circle class="b" cx="183.5" cy="101" r="5.4" data-c="5u" data-k="5"/>
+    <circle class="b off" cx="183.5" cy="88" r="5.4" data-c="5u" data-k="6"/>
+    <circle class="b off" cx="183.5" cy="75" r="5.4" data-c="5u" data-k="7"/>
+    <circle class="b off" cx="183.5" cy="62" r="5.4" data-c="5u" data-k="8"/>
+    <circle class="b off" cx="183.5" cy="49" r="5.4" data-c="5u" data-k="9"/>
+    <circle class="b off" cx="183.5" cy="36" r="5.4" data-c="5u" data-k="10"/>
+    <circle class="b" cx="183.5" cy="194" r="5.4" data-c="5d" data-k="0"/>
+    <circle class="b" cx="183.5" cy="207" r="5.4" data-c="5d" data-k="1"/>
+    <circle class="b" cx="183.5" cy="220" r="5.4" data-c="5d" data-k="2"/>
+    <circle class="b" cx="183.5" cy="233" r="5.4" data-c="5d" data-k="3"/>
+    <circle class="b" cx="183.5" cy="246" r="5.4" data-c="5d" data-k="4"/>
+    <circle class="b" cx="183.5" cy="259" r="5.4" data-c="5d" data-k="5"/>
+    <circle class="b off" cx="183.5" cy="272" r="5.4" data-c="5d" data-k="6"/>
+    <circle class="b off" cx="183.5" cy="285" r="5.4" data-c="5d" data-k="7"/>
+    <circle class="b off" cx="183.5" cy="298" r="5.4" data-c="5d" data-k="8"/>
+    <circle class="b off" cx="183.5" cy="311" r="5.4" data-c="5d" data-k="9"/>
+    <circle class="b off" cx="183.5" cy="324" r="5.4" data-c="5d" data-k="10"/>
+    <circle class="b" cx="211.0" cy="166" r="5.4" data-c="6u" data-k="0"/>
+    <circle class="b" cx="211.0" cy="153" r="5.4" data-c="6u" data-k="1"/>
+    <circle class="b" cx="211.0" cy="140" r="5.4" data-c="6u" data-k="2"/>
+    <circle class="b" cx="211.0" cy="127" r="5.4" data-c="6u" data-k="3"/>
+    <circle class="b" cx="211.0" cy="114" r="5.4" data-c="6u" data-k="4"/>
+    <circle class="b" cx="211.0" cy="101" r="5.4" data-c="6u" data-k="5"/>
+    <circle class="b off" cx="211.0" cy="88" r="5.4" data-c="6u" data-k="6"/>
+    <circle class="b off" cx="211.0" cy="75" r="5.4" data-c="6u" data-k="7"/>
+    <circle class="b off" cx="211.0" cy="62" r="5.4" data-c="6u" data-k="8"/>
+    <circle class="b off" cx="211.0" cy="49" r="5.4" data-c="6u" data-k="9"/>
+    <circle class="b off" cx="211.0" cy="36" r="5.4" data-c="6u" data-k="10"/>
+    <circle class="b" cx="211.0" cy="194" r="5.4" data-c="6d" data-k="0"/>
+    <circle class="b" cx="211.0" cy="207" r="5.4" data-c="6d" data-k="1"/>
+    <circle class="b" cx="211.0" cy="220" r="5.4" data-c="6d" data-k="2"/>
+    <circle class="b" cx="211.0" cy="233" r="5.4" data-c="6d" data-k="3"/>
+    <circle class="b" cx="211.0" cy="246" r="5.4" data-c="6d" data-k="4"/>
+    <circle class="b" cx="211.0" cy="259" r="5.4" data-c="6d" data-k="5"/>
+    <circle class="b off" cx="211.0" cy="272" r="5.4" data-c="6d" data-k="6"/>
+    <circle class="b off" cx="211.0" cy="285" r="5.4" data-c="6d" data-k="7"/>
+    <circle class="b off" cx="211.0" cy="298" r="5.4" data-c="6d" data-k="8"/>
+    <circle class="b off" cx="211.0" cy="311" r="5.4" data-c="6d" data-k="9"/>
+    <circle class="b off" cx="211.0" cy="324" r="5.4" data-c="6d" data-k="10"/>
+    <circle class="b" cx="238.5" cy="166" r="5.4" data-c="7u" data-k="0"/>
+    <circle class="b" cx="238.5" cy="153" r="5.4" data-c="7u" data-k="1"/>
+    <circle class="b" cx="238.5" cy="140" r="5.4" data-c="7u" data-k="2"/>
+    <circle class="b" cx="238.5" cy="127" r="5.4" data-c="7u" data-k="3"/>
+    <circle class="b" cx="238.5" cy="114" r="5.4" data-c="7u" data-k="4"/>
+    <circle class="b" cx="238.5" cy="101" r="5.4" data-c="7u" data-k="5"/>
+    <circle class="b off" cx="238.5" cy="88" r="5.4" data-c="7u" data-k="6"/>
+    <circle class="b off" cx="238.5" cy="75" r="5.4" data-c="7u" data-k="7"/>
+    <circle class="b off" cx="238.5" cy="62" r="5.4" data-c="7u" data-k="8"/>
+    <circle class="b off" cx="238.5" cy="49" r="5.4" data-c="7u" data-k="9"/>
+    <circle class="b off" cx="238.5" cy="36" r="5.4" data-c="7u" data-k="10"/>
+    <circle class="b" cx="238.5" cy="194" r="5.4" data-c="7d" data-k="0"/>
+    <circle class="b" cx="238.5" cy="207" r="5.4" data-c="7d" data-k="1"/>
+    <circle class="b" cx="238.5" cy="220" r="5.4" data-c="7d" data-k="2"/>
+    <circle class="b" cx="238.5" cy="233" r="5.4" data-c="7d" data-k="3"/>
+    <circle class="b" cx="238.5" cy="246" r="5.4" data-c="7d" data-k="4"/>
+    <circle class="b" cx="238.5" cy="259" r="5.4" data-c="7d" data-k="5"/>
+    <circle class="b off" cx="238.5" cy="272" r="5.4" data-c="7d" data-k="6"/>
+    <circle class="b off" cx="238.5" cy="285" r="5.4" data-c="7d" data-k="7"/>
+    <circle class="b off" cx="238.5" cy="298" r="5.4" data-c="7d" data-k="8"/>
+    <circle class="b off" cx="238.5" cy="311" r="5.4" data-c="7d" data-k="9"/>
+    <circle class="b off" cx="238.5" cy="324" r="5.4" data-c="7d" data-k="10"/>
+    <circle class="b" cx="266.0" cy="166" r="5.4" data-c="8u" data-k="0"/>
+    <circle class="b" cx="266.0" cy="153" r="5.4" data-c="8u" data-k="1"/>
+    <circle class="b" cx="266.0" cy="140" r="5.4" data-c="8u" data-k="2"/>
+    <circle class="b" cx="266.0" cy="127" r="5.4" data-c="8u" data-k="3"/>
+    <circle class="b" cx="266.0" cy="114" r="5.4" data-c="8u" data-k="4"/>
+    <circle class="b" cx="266.0" cy="101" r="5.4" data-c="8u" data-k="5"/>
+    <circle class="b off" cx="266.0" cy="88" r="5.4" data-c="8u" data-k="6"/>
+    <circle class="b off" cx="266.0" cy="75" r="5.4" data-c="8u" data-k="7"/>
+    <circle class="b off" cx="266.0" cy="62" r="5.4" data-c="8u" data-k="8"/>
+    <circle class="b off" cx="266.0" cy="49" r="5.4" data-c="8u" data-k="9"/>
+    <circle class="b off" cx="266.0" cy="36" r="5.4" data-c="8u" data-k="10"/>
+    <circle class="b" cx="266.0" cy="194" r="5.4" data-c="8d" data-k="0"/>
+    <circle class="b" cx="266.0" cy="207" r="5.4" data-c="8d" data-k="1"/>
+    <circle class="b" cx="266.0" cy="220" r="5.4" data-c="8d" data-k="2"/>
+    <circle class="b" cx="266.0" cy="233" r="5.4" data-c="8d" data-k="3"/>
+    <circle class="b" cx="266.0" cy="246" r="5.4" data-c="8d" data-k="4"/>
+    <circle class="b" cx="266.0" cy="259" r="5.4" data-c="8d" data-k="5"/>
+    <circle class="b off" cx="266.0" cy="272" r="5.4" data-c="8d" data-k="6"/>
+    <circle class="b off" cx="266.0" cy="285" r="5.4" data-c="8d" data-k="7"/>
+    <circle class="b off" cx="266.0" cy="298" r="5.4" data-c="8d" data-k="8"/>
+    <circle class="b off" cx="266.0" cy="311" r="5.4" data-c="8d" data-k="9"/>
+    <circle class="b off" cx="266.0" cy="324" r="5.4" data-c="8d" data-k="10"/>
+    <circle class="b" cx="293.5" cy="166" r="5.4" data-c="9u" data-k="0"/>
+    <circle class="b" cx="293.5" cy="153" r="5.4" data-c="9u" data-k="1"/>
+    <circle class="b" cx="293.5" cy="140" r="5.4" data-c="9u" data-k="2"/>
+    <circle class="b" cx="293.5" cy="127" r="5.4" data-c="9u" data-k="3"/>
+    <circle class="b" cx="293.5" cy="114" r="5.4" data-c="9u" data-k="4"/>
+    <circle class="b" cx="293.5" cy="101" r="5.4" data-c="9u" data-k="5"/>
+    <circle class="b off" cx="293.5" cy="88" r="5.4" data-c="9u" data-k="6"/>
+    <circle class="b off" cx="293.5" cy="75" r="5.4" data-c="9u" data-k="7"/>
+    <circle class="b off" cx="293.5" cy="62" r="5.4" data-c="9u" data-k="8"/>
+    <circle class="b off" cx="293.5" cy="49" r="5.4" data-c="9u" data-k="9"/>
+    <circle class="b off" cx="293.5" cy="36" r="5.4" data-c="9u" data-k="10"/>
+    <circle class="b" cx="293.5" cy="194" r="5.4" data-c="9d" data-k="0"/>
+    <circle class="b" cx="293.5" cy="207" r="5.4" data-c="9d" data-k="1"/>
+    <circle class="b" cx="293.5" cy="220" r="5.4" data-c="9d" data-k="2"/>
+    <circle class="b" cx="293.5" cy="233" r="5.4" data-c="9d" data-k="3"/>
+    <circle class="b" cx="293.5" cy="246" r="5.4" data-c="9d" data-k="4"/>
+    <circle class="b" cx="293.5" cy="259" r="5.4" data-c="9d" data-k="5"/>
+    <circle class="b off" cx="293.5" cy="272" r="5.4" data-c="9d" data-k="6"/>
+    <circle class="b off" cx="293.5" cy="285" r="5.4" data-c="9d" data-k="7"/>
+    <circle class="b off" cx="293.5" cy="298" r="5.4" data-c="9d" data-k="8"/>
+    <circle class="b off" cx="293.5" cy="311" r="5.4" data-c="9d" data-k="9"/>
+    <circle class="b off" cx="293.5" cy="324" r="5.4" data-c="9d" data-k="10"/>
+    <circle class="b" cx="321.0" cy="166" r="5.4" data-c="10u" data-k="0"/>
+    <circle class="b" cx="321.0" cy="153" r="5.4" data-c="10u" data-k="1"/>
+    <circle class="b" cx="321.0" cy="140" r="5.4" data-c="10u" data-k="2"/>
+    <circle class="b" cx="321.0" cy="127" r="5.4" data-c="10u" data-k="3"/>
+    <circle class="b" cx="321.0" cy="114" r="5.4" data-c="10u" data-k="4"/>
+    <circle class="b" cx="321.0" cy="101" r="5.4" data-c="10u" data-k="5"/>
+    <circle class="b off" cx="321.0" cy="88" r="5.4" data-c="10u" data-k="6"/>
+    <circle class="b off" cx="321.0" cy="75" r="5.4" data-c="10u" data-k="7"/>
+    <circle class="b off" cx="321.0" cy="62" r="5.4" data-c="10u" data-k="8"/>
+    <circle class="b off" cx="321.0" cy="49" r="5.4" data-c="10u" data-k="9"/>
+    <circle class="b off" cx="321.0" cy="36" r="5.4" data-c="10u" data-k="10"/>
+    <circle class="b" cx="321.0" cy="194" r="5.4" data-c="10d" data-k="0"/>
+    <circle class="b" cx="321.0" cy="207" r="5.4" data-c="10d" data-k="1"/>
+    <circle class="b" cx="321.0" cy="220" r="5.4" data-c="10d" data-k="2"/>
+    <circle class="b" cx="321.0" cy="233" r="5.4" data-c="10d" data-k="3"/>
+    <circle class="b" cx="321.0" cy="246" r="5.4" data-c="10d" data-k="4"/>
+    <circle class="b" cx="321.0" cy="259" r="5.4" data-c="10d" data-k="5"/>
+    <circle class="b off" cx="321.0" cy="272" r="5.4" data-c="10d" data-k="6"/>
+    <circle class="b off" cx="321.0" cy="285" r="5.4" data-c="10d" data-k="7"/>
+    <circle class="b off" cx="321.0" cy="298" r="5.4" data-c="10d" data-k="8"/>
+    <circle class="b off" cx="321.0" cy="311" r="5.4" data-c="10d" data-k="9"/>
+    <circle class="b off" cx="321.0" cy="324" r="5.4" data-c="10d" data-k="10"/>
+    <circle class="b" cx="348.5" cy="166" r="5.4" data-c="11u" data-k="0"/>
+    <circle class="b" cx="348.5" cy="153" r="5.4" data-c="11u" data-k="1"/>
+    <circle class="b" cx="348.5" cy="140" r="5.4" data-c="11u" data-k="2"/>
+    <circle class="b" cx="348.5" cy="127" r="5.4" data-c="11u" data-k="3"/>
+    <circle class="b" cx="348.5" cy="114" r="5.4" data-c="11u" data-k="4"/>
+    <circle class="b" cx="348.5" cy="101" r="5.4" data-c="11u" data-k="5"/>
+    <circle class="b off" cx="348.5" cy="88" r="5.4" data-c="11u" data-k="6"/>
+    <circle class="b off" cx="348.5" cy="75" r="5.4" data-c="11u" data-k="7"/>
+    <circle class="b off" cx="348.5" cy="62" r="5.4" data-c="11u" data-k="8"/>
+    <circle class="b off" cx="348.5" cy="49" r="5.4" data-c="11u" data-k="9"/>
+    <circle class="b off" cx="348.5" cy="36" r="5.4" data-c="11u" data-k="10"/>
+    <circle class="b" cx="348.5" cy="194" r="5.4" data-c="11d" data-k="0"/>
+    <circle class="b" cx="348.5" cy="207" r="5.4" data-c="11d" data-k="1"/>
+    <circle class="b" cx="348.5" cy="220" r="5.4" data-c="11d" data-k="2"/>
+    <circle class="b" cx="348.5" cy="233" r="5.4" data-c="11d" data-k="3"/>
+    <circle class="b" cx="348.5" cy="246" r="5.4" data-c="11d" data-k="4"/>
+    <circle class="b" cx="348.5" cy="259" r="5.4" data-c="11d" data-k="5"/>
+    <circle class="b off" cx="348.5" cy="272" r="5.4" data-c="11d" data-k="6"/>
+    <circle class="b off" cx="348.5" cy="285" r="5.4" data-c="11d" data-k="7"/>
+    <circle class="b off" cx="348.5" cy="298" r="5.4" data-c="11d" data-k="8"/>
+    <circle class="b off" cx="348.5" cy="311" r="5.4" data-c="11d" data-k="9"/>
+    <circle class="b off" cx="348.5" cy="324" r="5.4" data-c="11d" data-k="10"/>
+    <circle class="b" cx="376.0" cy="166" r="5.4" data-c="12u" data-k="0"/>
+    <circle class="b" cx="376.0" cy="153" r="5.4" data-c="12u" data-k="1"/>
+    <circle class="b" cx="376.0" cy="140" r="5.4" data-c="12u" data-k="2"/>
+    <circle class="b" cx="376.0" cy="127" r="5.4" data-c="12u" data-k="3"/>
+    <circle class="b" cx="376.0" cy="114" r="5.4" data-c="12u" data-k="4"/>
+    <circle class="b" cx="376.0" cy="101" r="5.4" data-c="12u" data-k="5"/>
+    <circle class="b off" cx="376.0" cy="88" r="5.4" data-c="12u" data-k="6"/>
+    <circle class="b off" cx="376.0" cy="75" r="5.4" data-c="12u" data-k="7"/>
+    <circle class="b off" cx="376.0" cy="62" r="5.4" data-c="12u" data-k="8"/>
+    <circle class="b off" cx="376.0" cy="49" r="5.4" data-c="12u" data-k="9"/>
+    <circle class="b off" cx="376.0" cy="36" r="5.4" data-c="12u" data-k="10"/>
+    <circle class="b" cx="376.0" cy="194" r="5.4" data-c="12d" data-k="0"/>
+    <circle class="b" cx="376.0" cy="207" r="5.4" data-c="12d" data-k="1"/>
+    <circle class="b" cx="376.0" cy="220" r="5.4" data-c="12d" data-k="2"/>
+    <circle class="b" cx="376.0" cy="233" r="5.4" data-c="12d" data-k="3"/>
+    <circle class="b" cx="376.0" cy="246" r="5.4" data-c="12d" data-k="4"/>
+    <circle class="b" cx="376.0" cy="259" r="5.4" data-c="12d" data-k="5"/>
+    <circle class="b off" cx="376.0" cy="272" r="5.4" data-c="12d" data-k="6"/>
+    <circle class="b off" cx="376.0" cy="285" r="5.4" data-c="12d" data-k="7"/>
+    <circle class="b off" cx="376.0" cy="298" r="5.4" data-c="12d" data-k="8"/>
+    <circle class="b off" cx="376.0" cy="311" r="5.4" data-c="12d" data-k="9"/>
+    <circle class="b off" cx="376.0" cy="324" r="5.4" data-c="12d" data-k="10"/>
+    <circle class="b" cx="403.5" cy="166" r="5.4" data-c="13u" data-k="0"/>
+    <circle class="b" cx="403.5" cy="153" r="5.4" data-c="13u" data-k="1"/>
+    <circle class="b" cx="403.5" cy="140" r="5.4" data-c="13u" data-k="2"/>
+    <circle class="b" cx="403.5" cy="127" r="5.4" data-c="13u" data-k="3"/>
+    <circle class="b" cx="403.5" cy="114" r="5.4" data-c="13u" data-k="4"/>
+    <circle class="b" cx="403.5" cy="101" r="5.4" data-c="13u" data-k="5"/>
+    <circle class="b off" cx="403.5" cy="88" r="5.4" data-c="13u" data-k="6"/>
+    <circle class="b off" cx="403.5" cy="75" r="5.4" data-c="13u" data-k="7"/>
+    <circle class="b off" cx="403.5" cy="62" r="5.4" data-c="13u" data-k="8"/>
+    <circle class="b off" cx="403.5" cy="49" r="5.4" data-c="13u" data-k="9"/>
+    <circle class="b off" cx="403.5" cy="36" r="5.4" data-c="13u" data-k="10"/>
+    <circle class="b" cx="403.5" cy="194" r="5.4" data-c="13d" data-k="0"/>
+    <circle class="b" cx="403.5" cy="207" r="5.4" data-c="13d" data-k="1"/>
+    <circle class="b" cx="403.5" cy="220" r="5.4" data-c="13d" data-k="2"/>
+    <circle class="b" cx="403.5" cy="233" r="5.4" data-c="13d" data-k="3"/>
+    <circle class="b" cx="403.5" cy="246" r="5.4" data-c="13d" data-k="4"/>
+    <circle class="b" cx="403.5" cy="259" r="5.4" data-c="13d" data-k="5"/>
+    <circle class="b off" cx="403.5" cy="272" r="5.4" data-c="13d" data-k="6"/>
+    <circle class="b off" cx="403.5" cy="285" r="5.4" data-c="13d" data-k="7"/>
+    <circle class="b off" cx="403.5" cy="298" r="5.4" data-c="13d" data-k="8"/>
+    <circle class="b off" cx="403.5" cy="311" r="5.4" data-c="13d" data-k="9"/>
+    <circle class="b off" cx="403.5" cy="324" r="5.4" data-c="13d" data-k="10"/>
+    <circle class="b" cx="431.0" cy="166" r="5.4" data-c="14u" data-k="0"/>
+    <circle class="b" cx="431.0" cy="153" r="5.4" data-c="14u" data-k="1"/>
+    <circle class="b" cx="431.0" cy="140" r="5.4" data-c="14u" data-k="2"/>
+    <circle class="b" cx="431.0" cy="127" r="5.4" data-c="14u" data-k="3"/>
+    <circle class="b" cx="431.0" cy="114" r="5.4" data-c="14u" data-k="4"/>
+    <circle class="b" cx="431.0" cy="101" r="5.4" data-c="14u" data-k="5"/>
+    <circle class="b off" cx="431.0" cy="88" r="5.4" data-c="14u" data-k="6"/>
+    <circle class="b off" cx="431.0" cy="75" r="5.4" data-c="14u" data-k="7"/>
+    <circle class="b off" cx="431.0" cy="62" r="5.4" data-c="14u" data-k="8"/>
+    <circle class="b off" cx="431.0" cy="49" r="5.4" data-c="14u" data-k="9"/>
+    <circle class="b off" cx="431.0" cy="36" r="5.4" data-c="14u" data-k="10"/>
+    <circle class="b" cx="431.0" cy="194" r="5.4" data-c="14d" data-k="0"/>
+    <circle class="b" cx="431.0" cy="207" r="5.4" data-c="14d" data-k="1"/>
+    <circle class="b" cx="431.0" cy="220" r="5.4" data-c="14d" data-k="2"/>
+    <circle class="b" cx="431.0" cy="233" r="5.4" data-c="14d" data-k="3"/>
+    <circle class="b" cx="431.0" cy="246" r="5.4" data-c="14d" data-k="4"/>
+    <circle class="b" cx="431.0" cy="259" r="5.4" data-c="14d" data-k="5"/>
+    <circle class="b off" cx="431.0" cy="272" r="5.4" data-c="14d" data-k="6"/>
+    <circle class="b off" cx="431.0" cy="285" r="5.4" data-c="14d" data-k="7"/>
+    <circle class="b off" cx="431.0" cy="298" r="5.4" data-c="14d" data-k="8"/>
+    <circle class="b off" cx="431.0" cy="311" r="5.4" data-c="14d" data-k="9"/>
+    <circle class="b off" cx="431.0" cy="324" r="5.4" data-c="14d" data-k="10"/>
+    <circle class="b" cx="458.5" cy="166" r="5.4" data-c="15u" data-k="0"/>
+    <circle class="b" cx="458.5" cy="153" r="5.4" data-c="15u" data-k="1"/>
+    <circle class="b" cx="458.5" cy="140" r="5.4" data-c="15u" data-k="2"/>
+    <circle class="b" cx="458.5" cy="127" r="5.4" data-c="15u" data-k="3"/>
+    <circle class="b" cx="458.5" cy="114" r="5.4" data-c="15u" data-k="4"/>
+    <circle class="b" cx="458.5" cy="101" r="5.4" data-c="15u" data-k="5"/>
+    <circle class="b off" cx="458.5" cy="88" r="5.4" data-c="15u" data-k="6"/>
+    <circle class="b off" cx="458.5" cy="75" r="5.4" data-c="15u" data-k="7"/>
+    <circle class="b off" cx="458.5" cy="62" r="5.4" data-c="15u" data-k="8"/>
+    <circle class="b off" cx="458.5" cy="49" r="5.4" data-c="15u" data-k="9"/>
+    <circle class="b off" cx="458.5" cy="36" r="5.4" data-c="15u" data-k="10"/>
+    <circle class="b" cx="458.5" cy="194" r="5.4" data-c="15d" data-k="0"/>
+    <circle class="b" cx="458.5" cy="207" r="5.4" data-c="15d" data-k="1"/>
+    <circle class="b" cx="458.5" cy="220" r="5.4" data-c="15d" data-k="2"/>
+    <circle class="b" cx="458.5" cy="233" r="5.4" data-c="15d" data-k="3"/>
+    <circle class="b" cx="458.5" cy="246" r="5.4" data-c="15d" data-k="4"/>
+    <circle class="b" cx="458.5" cy="259" r="5.4" data-c="15d" data-k="5"/>
+    <circle class="b off" cx="458.5" cy="272" r="5.4" data-c="15d" data-k="6"/>
+    <circle class="b off" cx="458.5" cy="285" r="5.4" data-c="15d" data-k="7"/>
+    <circle class="b off" cx="458.5" cy="298" r="5.4" data-c="15d" data-k="8"/>
+    <circle class="b off" cx="458.5" cy="311" r="5.4" data-c="15d" data-k="9"/>
+    <circle class="b off" cx="458.5" cy="324" r="5.4" data-c="15d" data-k="10"/>
+    <circle class="b" cx="486.0" cy="166" r="5.4" data-c="16u" data-k="0"/>
+    <circle class="b" cx="486.0" cy="153" r="5.4" data-c="16u" data-k="1"/>
+    <circle class="b" cx="486.0" cy="140" r="5.4" data-c="16u" data-k="2"/>
+    <circle class="b" cx="486.0" cy="127" r="5.4" data-c="16u" data-k="3"/>
+    <circle class="b" cx="486.0" cy="114" r="5.4" data-c="16u" data-k="4"/>
+    <circle class="b" cx="486.0" cy="101" r="5.4" data-c="16u" data-k="5"/>
+    <circle class="b off" cx="486.0" cy="88" r="5.4" data-c="16u" data-k="6"/>
+    <circle class="b off" cx="486.0" cy="75" r="5.4" data-c="16u" data-k="7"/>
+    <circle class="b off" cx="486.0" cy="62" r="5.4" data-c="16u" data-k="8"/>
+    <circle class="b off" cx="486.0" cy="49" r="5.4" data-c="16u" data-k="9"/>
+    <circle class="b off" cx="486.0" cy="36" r="5.4" data-c="16u" data-k="10"/>
+    <circle class="b" cx="486.0" cy="194" r="5.4" data-c="16d" data-k="0"/>
+    <circle class="b" cx="486.0" cy="207" r="5.4" data-c="16d" data-k="1"/>
+    <circle class="b" cx="486.0" cy="220" r="5.4" data-c="16d" data-k="2"/>
+    <circle class="b" cx="486.0" cy="233" r="5.4" data-c="16d" data-k="3"/>
+    <circle class="b" cx="486.0" cy="246" r="5.4" data-c="16d" data-k="4"/>
+    <circle class="b" cx="486.0" cy="259" r="5.4" data-c="16d" data-k="5"/>
+    <circle class="b off" cx="486.0" cy="272" r="5.4" data-c="16d" data-k="6"/>
+    <circle class="b off" cx="486.0" cy="285" r="5.4" data-c="16d" data-k="7"/>
+    <circle class="b off" cx="486.0" cy="298" r="5.4" data-c="16d" data-k="8"/>
+    <circle class="b off" cx="486.0" cy="311" r="5.4" data-c="16d" data-k="9"/>
+    <circle class="b off" cx="486.0" cy="324" r="5.4" data-c="16d" data-k="10"/>
+    <circle class="b" cx="513.5" cy="166" r="5.4" data-c="17u" data-k="0"/>
+    <circle class="b" cx="513.5" cy="153" r="5.4" data-c="17u" data-k="1"/>
+    <circle class="b" cx="513.5" cy="140" r="5.4" data-c="17u" data-k="2"/>
+    <circle class="b" cx="513.5" cy="127" r="5.4" data-c="17u" data-k="3"/>
+    <circle class="b" cx="513.5" cy="114" r="5.4" data-c="17u" data-k="4"/>
+    <circle class="b" cx="513.5" cy="101" r="5.4" data-c="17u" data-k="5"/>
+    <circle class="b off" cx="513.5" cy="88" r="5.4" data-c="17u" data-k="6"/>
+    <circle class="b off" cx="513.5" cy="75" r="5.4" data-c="17u" data-k="7"/>
+    <circle class="b off" cx="513.5" cy="62" r="5.4" data-c="17u" data-k="8"/>
+    <circle class="b off" cx="513.5" cy="49" r="5.4" data-c="17u" data-k="9"/>
+    <circle class="b off" cx="513.5" cy="36" r="5.4" data-c="17u" data-k="10"/>
+    <circle class="b" cx="513.5" cy="194" r="5.4" data-c="17d" data-k="0"/>
+    <circle class="b" cx="513.5" cy="207" r="5.4" data-c="17d" data-k="1"/>
+    <circle class="b" cx="513.5" cy="220" r="5.4" data-c="17d" data-k="2"/>
+    <circle class="b" cx="513.5" cy="233" r="5.4" data-c="17d" data-k="3"/>
+    <circle class="b" cx="513.5" cy="246" r="5.4" data-c="17d" data-k="4"/>
+    <circle class="b" cx="513.5" cy="259" r="5.4" data-c="17d" data-k="5"/>
+    <circle class="b off" cx="513.5" cy="272" r="5.4" data-c="17d" data-k="6"/>
+    <circle class="b off" cx="513.5" cy="285" r="5.4" data-c="17d" data-k="7"/>
+    <circle class="b off" cx="513.5" cy="298" r="5.4" data-c="17d" data-k="8"/>
+    <circle class="b off" cx="513.5" cy="311" r="5.4" data-c="17d" data-k="9"/>
+    <circle class="b off" cx="513.5" cy="324" r="5.4" data-c="17d" data-k="10"/>
+    </svg>
+    <div class="brushctl" role="group" aria-label="Side-chain distribution">
+      <button type="button" data-state="disperse">Disperse <i>Đ</i>&nbsp;&gt;&nbsp;1</button>
+      <button type="button" data-state="discrete" aria-pressed="true">Discrete <i>Đ</i>&nbsp;=&nbsp;1</button>
+    </div>
+  </figure>
 </div>
 
 <section id="about"><div class="grid">
-  <div class="sechead">Approach</div>
-  <div class="secbody">
-    <p>A conventional polymer sample is an average of many different molecules. That average
-    hides the thing we want to measure, because any property you record is a property of the
-    distribution rather than of a structure.</p>
-    <p>Working with molecularly uniform building blocks removes the averaging. Architecture
-    becomes a variable we set rather than one we infer.</p>
+  <div class="sechead" data-reveal>Approach</div>
+  <div class="statement" data-reveal>
+    <p>A conventional polymer sample is an average of many different molecules. Any property
+    you measure belongs to the distribution, not to a structure.</p>
+    <p class="quiet">We remove the averaging. With molecularly uniform building blocks,
+    architecture becomes a variable we set rather than one we infer.</p>
   </div>
+  <figure class="wide card" data-reveal>
+    <img src="images/architecture.png" alt="Coarse-grained molecular dynamics of disperse and discrete bottlebrush polymers at an interface." loading="lazy">
+  </figure>
+  <p class="figcap" data-reveal><b>Dispersity is not a detail.</b> Identical chemistry, two
+  side-chain distributions. The disperse brushes pack without order. The discrete ones align.
+  Coarse-grained molecular dynamics at the air&ndash;water interface.</p>
   <div class="aims">
-    <div><span class="n">01</span><p>Create precise polymeric building blocks</p></div>
-    <div><span class="n">02</span><p>Understand structure and property relationships in complex polymers</p></div>
-    <div><span class="n">03</span><p>Design multifunctional biomaterials and nanomaterials</p></div>
+    <div data-reveal><span class="n">01</span><p>Create precise polymeric building blocks</p></div>
+    <div data-reveal><span class="n">02</span><p>Understand structure and property relationships in complex polymers</p></div>
+    <div data-reveal><span class="n">03</span><p>Design multifunctional biomaterials and nanomaterials</p></div>
   </div>
 </div></section>
 
 <section id="areas"><div class="grid">
-  <div class="sechead">Active work</div>
+  <div class="sechead" data-reveal>Active work</div>
   <div class="areas">
-    <div class="area"><span class="idx">01</span><h3>Topologically precise bottlebrush polymers</h3>
-      <p>Discrete side chains on defined backbones, so topology is a variable and not a distribution.</p></div>
-    <div class="area"><span class="idx">02</span><h3>Metal-free &sup1;&#8313;F MRI contrast agents</h3>
-      <p>Architecture governs imaging performance more than fluorine content does. No gadolinium.</p></div>
-    <div class="area"><span class="idx">03</span><h3>Templated synthesis and automated separation</h3>
-      <p>Recycling preparative chromatography isolates single-species oligomers at useful scale.</p></div>
-    <div class="area"><span class="idx">04</span><h3>Polymeric surfactants and surface modifiers</h3>
-      <p>Side-chain sequence and flexibility set how a chain behaves at an interface.</p></div>
-    <div class="area"><span class="idx">05</span><h3>Tunable nanoparticles</h3>
-      <p>Ligand architecture controls how particles organise and what they do.</p></div>
+    <article class="area" data-reveal>
+      <div class="card"><img src="images/areas/bottlebrush.jpg" alt="Molecular models of bottlebrush polymers." loading="lazy"></div>
+      <span class="idx">01</span><h3>Topologically precise bottlebrush polymers</h3>
+      <p>Discrete side chains on defined backbones, so topology is a variable and not a distribution.</p>
+    </article>
+    <article class="area" data-reveal>
+      <div class="card"><img src="images/areas/mri.jpg" alt="Mass spectra, fluorine-19 NMR and MRI images of disperse and discrete contrast agents." loading="lazy"></div>
+      <span class="idx">02</span><h3>Metal-free <sup>19</sup>F MRI contrast agents</h3>
+      <p>Architecture governs imaging performance more than fluorine content does. No gadolinium.</p>
+    </article>
+    <article class="area" data-reveal>
+      <div class="card"><img src="images/areas/separation.jpg" alt="Automated separation of a 15 g oligomer mixture into discrete oligomers." loading="lazy"></div>
+      <span class="idx">03</span><h3>Templated synthesis and automated separation</h3>
+      <p>Recycling preparative chromatography isolates single-species oligomers at useful scale.</p>
+    </article>
+    <article class="area" data-reveal>
+      <div class="card"><img src="images/areas/interface.jpg" alt="Rendered bottlebrush polymers assembling at an interface." loading="lazy"></div>
+      <span class="idx">04</span><h3>Polymeric surfactants and surface modifiers</h3>
+      <p>Side-chain sequence and flexibility set how a chain behaves at an interface.</p>
+    </article>
+    <article class="area" data-reveal>
+      <div class="card"><img src="images/areas/nanoparticles.jpg" alt="Spectra and electron micrographs of polymer-coated nanoparticles in two solvents." loading="lazy"></div>
+      <span class="idx">05</span><h3>Tunable nanoparticles</h3>
+      <p>Ligand architecture controls how particles organise and what they do.</p>
+    </article>
+    <a class="area more" href="publications.html" data-reveal>
+      <span class="idx">&rarr;</span><h3>All publications</h3>
+      <p>Every paper links to the publisher.</p>
+    </a>
   </div>
 </div></section>
 
 <section id="group"><div class="grid">
-  <div class="sechead">The group</div>
-  <div class="groupsec">
-    <img src="images/group/group-2025.jpg" alt="Lawrence Lab members in Geaux Chemical Engineering shirts in the lab." loading="lazy">
+  <div class="sechead" data-reveal>The group</div>
+  <figure class="wide" data-reveal>
+    <img class="groupimg" src="images/group/group-2025.jpg" alt="Lawrence Lab members in Geaux Chemical Engineering shirts in the lab." loading="lazy">
+  </figure>
+  <div class="statement" data-reveal>
     <p>One postdoc, six PhD students and three undergraduates, with Jimmy Lawrence as
-    principal investigator.
-    <a href="people.html">Meet the group &rarr;</a></p>
+    principal investigator.</p>
+    <p class="links"><a href="people.html">Meet the group &rarr;</a><a href="join.html">Join us &rarr;</a></p>
+  </div>
+</div></section>
+
+<section id="support"><div class="grid">
+  <div class="sechead" data-reveal>Support</div>
+  <div class="support" data-reveal>
+    <div>
+      <h3>Funding</h3>
+      <ul>
+        <li>National Science Foundation</li>
+        <li>National Institutes of Health</li>
+        <li>ACS Petroleum Research Fund</li>
+        <li>Albemarle Foundation</li>
+        <li>Louisiana Board of Regents</li>
+        <li>LSU College of Engineering</li>
+      </ul>
+    </div>
+    <div>
+      <h3>With thanks</h3>
+      <p>Japan Analytical Industry and Tosoh, for technical support with preparative and
+      analytical chromatography and for supporting the conferences we organize.</p>
+    </div>
   </div>
 </div></section>
 
@@ -86,8 +533,8 @@
     Patrick F. Taylor Hall<br>Louisiana State University<br>Baton Rouge, Louisiana</div>
   <div class="b"><strong>Contact</strong>
     <a href="mailto:jimmylawrence@lsu.edu">jimmylawrence@lsu.edu</a></div>
-  <div class="c"><strong>Support</strong>
-    National Science Foundation<br>National Institutes of Health<br>ACS Petroleum Research Fund</div>
+  <div class="c"><strong>Funding</strong>
+    NSF &middot; NIH &middot; ACS PRF<br>Albemarle Foundation<br>Louisiana Board of Regents<br>LSU College of Engineering</div>
 </div></footer>
 
 </body>
