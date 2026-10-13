@@ -57,51 +57,113 @@
     }).observe(svg);
   }
 
-  // Recycling preparative HPLC: overlapping oligomers resolve pass by pass, the other
-  // species are cut away, and only the target is recycled and collected.
+  // Recycling SEC, drawn as a chart recorder: each pass slides in from the right, better
+  // resolved than the last. Low-MW species (later eluting, right) are cut at pass 5,
+  // high-MW species (left) at pass 6, and only the target comes back to be collected.
   document.querySelectorAll('svg[data-anim="hplc"]').forEach(function (svg) {
-    var X0 = 28, X1 = 372, Y0 = 236, H = 150;
-    el('line', { x1: X0, y1: Y0, x2: X1, y2: Y0, stroke: RULE, 'stroke-width': 1.5 }, svg);
-    var tPass = el('text', { x: X0, y: 44, 'font-size': 17, 'font-weight': 600 }, svg);
-    var tSub = el('text', { x: X0, y: 66, 'font-size': 13, class: 'g' }, svg);
-    var tx = el('text', { x: X1, y: Y0 + 26, 'font-size': 12, 'text-anchor': 'end', class: 'g' }, svg);
-    tx.textContent = 'Retention time';
+    var XL = 16, NOW = 352, Y0 = 232, H = 118, W = 140, CENTER = NOW - 78;
+    var cutLayer = el('g', {}, svg);
+    el('line', { x1: XL, y1: Y0, x2: NOW, y2: Y0, stroke: RULE, 'stroke-width': 1.5 }, svg);
     var fill = el('path', { fill: BLUE, opacity: 0 }, svg);
-    var line = el('path', { fill: 'none', stroke: INK, 'stroke-width': 2, 'stroke-linejoin': 'round' }, svg);
-    var AMP = [.5, .82, 1, .88, .66, .42], KEEP = 2, N = 140;
-    // t: 0 unresolved to 1 resolved. c: other species cut away. h: target filled (collected).
-    function draw(t, c, h) {
-      // Peaks narrow and separate with each pass. Height scales as 1/width so area is conserved.
-      var d = mix(.03, .118, t), s = mix(.072, .02, t), dl = 'M', fl = 'M';
-      // Once alone, the target drifts to the centre of the trace.
-      var shift = (.5 + (KEEP - 2.5) * d - .5) * c;
-      for (var i = 0; i <= N; i++) {
-        var u = i / N, y = 0, yk = 0;
-        for (var k = 0; k < AMP.length; k++) {
-          var g = AMP[k] * gauss(u, .5 + (k - 2.5) * d - (k === KEEP ? shift : 0), s) * (.02 / s) * .95;
-          if (k === KEEP) { y += g; yk = g; } else y += g * (1 - c);
-        }
-        var px = mix(X0, X1, u).toFixed(1);
-        dl += (i ? ' L' : '') + px + ' ' + (Y0 - y * H).toFixed(1);
-        fl += (i ? ' L' : '') + px + ' ' + (Y0 - yk * H).toFixed(1);
+    var line = el('path', { fill: 'none', stroke: INK, 'stroke-width': 1.8, 'stroke-linejoin': 'round' }, svg);
+    var pen = el('circle', { r: 3.2, fill: INK }, svg);
+    var passLab = el('g', {}, svg);
+    var tTitle = el('text', { x: XL + 8, y: 40, 'font-size': 17, 'font-weight': 600 }, svg);
+    tTitle.textContent = 'Recycling SEC';
+    var tSub = el('text', { x: XL + 8, y: 62, 'font-size': 13, class: 'g' }, svg);
+    var tAx = el('text', { x: NOW, y: Y0 + 40, 'font-size': 11, 'text-anchor': 'end', class: 'g' }, svg);
+    tAx.textContent = 'Retention time';
+    // Species 0 (highest MW, elutes first) to 5 (lowest MW). Low MW separates more in SEC.
+    var AMP = [.45, .75, 1, .85, .62, .4], POS = [-2.3, -1.55, -.75, .3, 1.55, 2.95], KEEP = 2;
+    var LOW = [3, 4, 5], HIGH = [0, 1], LAST = 7;
+    function passParams(p) { var t = Math.min(1, (p - 1) / 5); return { dx: mix(3.5, 17, t), s: mix(11, 3.4, t) }; }
+    function present(p, k) {
+      if (p >= 7) return k === KEEP;
+      if (p === 6) return LOW.indexOf(k) < 0;
+      return true;
+    }
+    function species(p) {   // screen-independent peak list of pass p, relative to its centre
+      var q = passParams(p), out = [];
+      for (var k = 0; k < AMP.length; k++) if (present(p, k)) {
+        out.push({ k: k, off: POS[k] * q.dx, s: q.s, h: AMP[k] * (3.4 / q.s) * .95 });
+      }
+      return out;
+    }
+    var boxes = [];   // [{pass, k, born}]
+    function draw(P, ms, fillA) {
+      var dl = '', fl = '', lastY = Y0, first = true;
+      var vis = [];
+      for (var p = 1; p <= LAST; p++) {
+        var c = CENTER + (p - P) * W;
+        if (c - W / 2 < NOW && c + W / 2 > XL) vis.push({ p: p, c: c, sp: species(p) });
+      }
+      for (var x = XL; x <= NOW; x += 1.5) {
+        var y = 0, yk = 0;
+        vis.forEach(function (v) {
+          v.sp.forEach(function (q) {
+            var g = q.h * gauss(x, v.c + q.off, q.s);
+            y += g; if (v.p === LAST) yk += g;
+          });
+        });
+        // Nothing has been recorded beyond the newest pass yet.
+        var px = x.toFixed(1), py = (Y0 - y * H).toFixed(1);
+        dl += (first ? 'M' : ' L') + px + ' ' + py;
+        fl += (first ? 'M' : ' L') + px + ' ' + (Y0 - yk * H).toFixed(1);
+        first = false; lastY = Y0 - y * H;
       }
       line.setAttribute('d', dl);
-      fill.setAttribute('d', fl + ' Z'); fill.setAttribute('opacity', (.85 * h).toFixed(2));
+      fill.setAttribute('d', fl + ' L' + NOW + ' ' + Y0 + ' L' + XL + ' ' + Y0 + ' Z');
+      fill.setAttribute('opacity', (.85 * fillA).toFixed(2));
+      pen.setAttribute('cx', NOW); pen.setAttribute('cy', lastY.toFixed(1));
+      // Cut boxes stay on the recorded pass and travel with it.
+      cutLayer.innerHTML = '';
+      boxes.forEach(function (bx) {
+        var c = CENTER + (bx.pass - P) * W, q = passParams(bx.pass), x0 = c + POS[bx.k] * q.dx;
+        var hgt = AMP[bx.k] * (3.4 / q.s) * .95 * H + 12, wd = q.s * 4.2;
+        var o = Math.min(1, (ms - bx.born) / 350);
+        if (x0 + wd < XL || x0 - wd > NOW) return;
+        el('rect', { x: (x0 - wd / 2).toFixed(1), y: (Y0 - hgt).toFixed(1), width: wd.toFixed(1), height: hgt.toFixed(1),
+          fill: GRAPH, 'fill-opacity': (.14 * o).toFixed(2), stroke: GRAPH, 'stroke-opacity': (.8 * o).toFixed(2),
+          'stroke-dasharray': '3 2', 'stroke-width': 1 }, cutLayer);
+      });
+      passLab.innerHTML = '';
+      vis.forEach(function (v) {
+        if (v.c > NOW - 20) return;
+        var t = el('text', { x: v.c.toFixed(1), y: Y0 + 20, 'font-size': 11.5, 'text-anchor': 'middle',
+          class: v.p === LAST ? '' : 'g', 'font-weight': v.p === LAST ? 600 : 400 }, passLab);
+        t.textContent = v.p === LAST ? 'Collected' : 'Pass ' + v.p;
+      });
     }
-    var HOLD1 = 700, SEP = 4200, CUT = 1300, COL = 900, HOLD2 = 2400, OUT = 500;
-    var LOOP = HOLD1 + SEP + CUT + COL + HOLD2 + OUT;
-    function label(pass, sub) { tPass.textContent = pass; tSub.textContent = sub; }
-    animate(svg, function (ms) {
-      var m = ms % LOOP, e1 = HOLD1 + SEP, e2 = e1 + CUT, e3 = e2 + COL, e4 = e3 + HOLD2;
-      if (m < HOLD1) { draw(0, 0, 0); label('Pass 1', 'A mixture of oligomers'); }
-      else if (m < e1) {
-        var t = (m - HOLD1) / SEP; draw(ease(t), 0, 0);
-        label('Pass ' + (1 + Math.min(4, Math.floor(t * 5))), 'Recycling through the column');
-      } else if (m < e2) { draw(1, ease((m - e1) / CUT), 0); label('Pass 5', 'Cutting away the other species'); }
-      else if (m < e3) { draw(1, 1, ease((m - e2) / COL)); label('Pass 6', 'Collecting one species'); }
-      else if (m < e4) { draw(1, 1, 1); label('Pass 6', 'One species, multigram scale'); }
-      else { var r = (m - e4) / OUT; draw(1 - ease(r), 1 - r, 1 - r); label('Pass 1', 'A mixture of oligomers'); }
-    }, function () { draw(1, 1, 1); label('Pass 6', 'One species, multigram scale'); });
+    // Timeline (ms): scroll to pass 5, cut low MW, scroll to 6, cut high MW, scroll to 7, collect.
+    var STEP = 1100, P0 = .35;
+    var T1 = (5 - P0) * STEP, T2 = T1 + 1500, T3 = T2 + STEP, T4 = T3 + 1500, T5 = T4 + STEP,
+        T6 = T5 + 700, T7 = T6 + 2300, LOOP = T7 + 500;
+    function addCuts(pass, ks, born) {
+      ks.forEach(function (k) {
+        if (!boxes.some(function (b) { return b.pass === pass && b.k === k; })) boxes.push({ pass: pass, k: k, born: born });
+      });
+    }
+    var lastM = 0;
+    function frame(ms) {
+      var m = ms % LOOP, P, fa = 0, sub;
+      if (m < lastM) boxes = [];   // a new loop starts with a clean trace
+      lastM = m;
+      if (m < T1) { P = P0 + m / STEP; sub = 'Each pass resolves the oligomers further'; }
+      else if (m < T2) { P = 5; addCuts(5, LOW, ms - (m - T1)); sub = 'Pass 5: cut the low-MW species'; }
+      else if (m < T3) { P = 5 + (m - T2) / STEP; sub = 'Recycling the rest'; }
+      else if (m < T4) { P = 6; addCuts(6, HIGH, ms - (m - T3)); sub = 'Pass 6: cut the high-MW species'; }
+      else if (m < T5) { P = 6 + (m - T4) / STEP; sub = 'Only the target returns'; }
+      else if (m < T6) { P = 7; fa = ease((m - T5) / (T6 - T5)); sub = 'One species collected'; }
+      else if (m < T7) { P = 7; fa = 1; sub = 'One species, multigram scale'; }
+      else { P = 7; fa = 1; sub = 'One species, multigram scale'; svg.style.opacity = (1 - (m - T7) / 500).toFixed(2); }
+      if (m < T7) svg.style.opacity = 1;
+      tSub.textContent = sub;
+      draw(P, ms, fa);
+    }
+    animate(svg, frame, function () {
+      boxes = [{ pass: 6, k: 0, born: -1e9 }, { pass: 6, k: 1, born: -1e9 }];
+      tSub.textContent = 'One species, multigram scale'; draw(7, 0, 1);
+    });
   });
 
   // 19F NMR and MRI: disperse agents give a broad, split signal and a dim, patchy image.
