@@ -57,7 +57,8 @@
     }).observe(svg);
   }
 
-  // Recycling preparative HPLC: overlapping oligomers resolve pass by pass, one is collected.
+  // Recycling preparative HPLC: overlapping oligomers resolve pass by pass, the other
+  // species are cut away, and only the target is recycled and collected.
   document.querySelectorAll('svg[data-anim="hplc"]').forEach(function (svg) {
     var X0 = 28, X1 = 372, Y0 = 236, H = 150;
     el('line', { x1: X0, y1: Y0, x2: X1, y2: Y0, stroke: RULE, 'stroke-width': 1.5 }, svg);
@@ -68,14 +69,17 @@
     var fill = el('path', { fill: BLUE, opacity: 0 }, svg);
     var line = el('path', { fill: 'none', stroke: INK, 'stroke-width': 2, 'stroke-linejoin': 'round' }, svg);
     var AMP = [.5, .82, 1, .88, .66, .42], KEEP = 2, N = 140;
-    function draw(t, h) {   // t: 0 unresolved to 1 resolved; h: collection highlight 0 to 1
+    // t: 0 unresolved to 1 resolved. c: other species cut away. h: target filled (collected).
+    function draw(t, c, h) {
       // Peaks narrow and separate with each pass. Height scales as 1/width so area is conserved.
       var d = mix(.03, .118, t), s = mix(.072, .02, t), dl = 'M', fl = 'M';
+      // Once alone, the target drifts to the centre of the trace.
+      var shift = (.5 + (KEEP - 2.5) * d - .5) * c;
       for (var i = 0; i <= N; i++) {
         var u = i / N, y = 0, yk = 0;
         for (var k = 0; k < AMP.length; k++) {
-          var g = AMP[k] * gauss(u, .5 + (k - 2.5) * d, s) * (.02 / s) * .95;
-          y += k === KEEP ? g : g * (1 - .75 * h); if (k === KEEP) yk = g;
+          var g = AMP[k] * gauss(u, .5 + (k - 2.5) * d - (k === KEEP ? shift : 0), s) * (.02 / s) * .95;
+          if (k === KEEP) { y += g; yk = g; } else y += g * (1 - c);
         }
         var px = mix(X0, X1, u).toFixed(1);
         dl += (i ? ' L' : '') + px + ' ' + (Y0 - y * H).toFixed(1);
@@ -84,18 +88,20 @@
       line.setAttribute('d', dl);
       fill.setAttribute('d', fl + ' Z'); fill.setAttribute('opacity', (.85 * h).toFixed(2));
     }
-    var SEP = 5200, HOLD1 = 700, COL = 900, HOLD2 = 2200, OUT = 500, LOOP = HOLD1 + SEP + COL + HOLD2 + OUT;
+    var HOLD1 = 700, SEP = 4200, CUT = 1300, COL = 900, HOLD2 = 2400, OUT = 500;
+    var LOOP = HOLD1 + SEP + CUT + COL + HOLD2 + OUT;
     function label(pass, sub) { tPass.textContent = pass; tSub.textContent = sub; }
     animate(svg, function (ms) {
-      var m = ms % LOOP;
-      if (m < HOLD1) { draw(0, 0); label('Pass 1', 'A mixture of oligomers'); }
-      else if (m < HOLD1 + SEP) {
-        var t = (m - HOLD1) / SEP; draw(ease(t), 0);
-        label('Pass ' + (1 + Math.min(5, Math.floor(t * 6))), 'Recycling through the column');
-      } else if (m < HOLD1 + SEP + COL) { draw(1, ease((m - HOLD1 - SEP) / COL)); label('Pass 6', 'Collecting one species'); }
-      else if (m < LOOP - OUT) { draw(1, 1); label('Pass 6', 'One species, multigram scale'); }
-      else { var r = (m - LOOP + OUT) / OUT; draw(1 - ease(r), 1 - r); label('Pass 1', 'A mixture of oligomers'); }
-    }, function () { draw(1, 1); label('Pass 6', 'One species, multigram scale'); });
+      var m = ms % LOOP, e1 = HOLD1 + SEP, e2 = e1 + CUT, e3 = e2 + COL, e4 = e3 + HOLD2;
+      if (m < HOLD1) { draw(0, 0, 0); label('Pass 1', 'A mixture of oligomers'); }
+      else if (m < e1) {
+        var t = (m - HOLD1) / SEP; draw(ease(t), 0, 0);
+        label('Pass ' + (1 + Math.min(4, Math.floor(t * 5))), 'Recycling through the column');
+      } else if (m < e2) { draw(1, ease((m - e1) / CUT), 0); label('Pass 5', 'Cutting away the other species'); }
+      else if (m < e3) { draw(1, 1, ease((m - e2) / COL)); label('Pass 6', 'Collecting one species'); }
+      else if (m < e4) { draw(1, 1, 1); label('Pass 6', 'One species, multigram scale'); }
+      else { var r = (m - e4) / OUT; draw(1 - ease(r), 1 - r, 1 - r); label('Pass 1', 'A mixture of oligomers'); }
+    }, function () { draw(1, 1, 1); label('Pass 6', 'One species, multigram scale'); });
   });
 
   // 19F NMR and MRI: disperse agents give a broad, split signal and a dim, patchy image.
@@ -199,9 +205,9 @@
   var cap = fig.querySelector('.brushcap');
   var LMAX = 22, SP = 21, K = 6, SIDE = 4, LDBP = 16;
   var CAPS = {
-    bbp: 'BBP: backbones and side chains of many lengths.',
-    pbp: 'PBP: identical side chains, backbones still of many lengths.',
-    dbp: 'DBP: every molecule identical, backbone and side chains.'
+    bbp: 'Conventional bottlebrush (BBP). Backbones and side chains of many lengths.',
+    pbp: 'Precision bottlebrush (PBP). Identical side chains, backbones of many lengths.',
+    dbp: 'Discrete bottlebrush (DBP). Every molecule identical.'
   };
   function bell() { return Math.random() + Math.random() + Math.random() - 1.5; }
   var backbones = mols.map(function () { return LDBP; });
