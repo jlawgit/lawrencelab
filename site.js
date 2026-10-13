@@ -58,111 +58,104 @@
   }
 
   // Recycling SEC, drawn as a chart recorder: each pass slides in from the right, better
-  // resolved than the last. Low-MW species (later eluting, right) are cut at pass 5,
-  // high-MW species (left) at pass 6, and only the target comes back to be collected.
+  // resolved than the last. Species are isolated in pairs once they reach baseline
+  // separation, lowest MW first (#1, #2 at pass 4; #3, #4 at pass 5; #5, #6 at pass 6).
+  // #4 is the target.
   document.querySelectorAll('svg[data-anim="hplc"]').forEach(function (svg) {
-    var XL = 16, NOW = 352, Y0 = 232, H = 118, W = 140, CENTER = NOW - 78;
+    var XL = 16, NOW = 352, Y0 = 232, H = 112, W = 140, CENTER = NOW - 78;
     var cutLayer = el('g', {}, svg);
     el('line', { x1: XL, y1: Y0, x2: NOW, y2: Y0, stroke: RULE, 'stroke-width': 1.5 }, svg);
-    var fill = el('path', { fill: BLUE, opacity: 0 }, svg);
     var line = el('path', { fill: 'none', stroke: INK, 'stroke-width': 1.8, 'stroke-linejoin': 'round' }, svg);
     var pen = el('circle', { r: 3.2, fill: INK }, svg);
     var passLab = el('g', {}, svg);
-    var tTitle = el('text', { x: XL + 8, y: 40, 'font-size': 17, 'font-weight': 600 }, svg);
+    var tTitle = el('text', { x: XL + 8, y: 36, 'font-size': 17, 'font-weight': 600 }, svg);
     tTitle.textContent = 'Recycling SEC';
-    var tSub = el('text', { x: XL + 8, y: 62, 'font-size': 13, class: 'g' }, svg);
+    var tSub = el('text', { x: XL + 8, y: 58, 'font-size': 13, class: 'g' }, svg);
     var tAx = el('text', { x: NOW, y: Y0 + 40, 'font-size': 11, 'text-anchor': 'end', class: 'g' }, svg);
     tAx.textContent = 'Retention time';
-    // Species 0 (highest MW, elutes first) to 5 (lowest MW). Low MW separates more in SEC.
-    var AMP = [.45, .75, 1, .85, .62, .4], POS = [-2.3, -1.55, -.75, .3, 1.55, 2.95], KEEP = 2;
-    var LOW = [3, 4, 5], HIGH = [0, 1], LAST = 7;
-    function passParams(p) { var t = Math.min(1, (p - 1) / 5); return { dx: mix(3.5, 17, t), s: mix(11, 3.4, t) }; }
-    function present(p, k) {
-      if (p >= 7) return k === KEEP;
-      if (p === 6) return LOW.indexOf(k) < 0;
-      return true;
-    }
-    function species(p) {   // screen-independent peak list of pass p, relative to its centre
-      var q = passParams(p), out = [];
-      for (var k = 0; k < AMP.length; k++) if (present(p, k)) {
-        out.push({ k: k, off: POS[k] * q.dx, s: q.s, h: AMP[k] * (3.4 / q.s) * .95 });
+    // Index k = 0 (highest MW, elutes first) to 5 (lowest MW). Number #n counts from the lowest MW.
+    // Low-MW species sit farther apart, as in SEC, so they reach baseline separation first.
+    var AMP = [.42, .7, .9, 1, .78, .5], POS = [-3.0, -2.2, -1.25, -.1, 1.3, 2.9];
+    var DX = [0, 3, 6, 10, 15, 17, 19], SIG = [0, 12, 9, 6, 4.2, 3.4, 2.8];   // per pass 1..6
+    var TAKEN = { 5: 4, 4: 4, 3: 5, 2: 5, 1: 6, 0: 6 };                        // k -> pass isolated
+    var TARGET = 2, LAST = 6;
+    function num(k) { return 6 - k; }
+    function species(p) {
+      var out = [];
+      for (var k = 0; k < AMP.length; k++) if (p <= TAKEN[k]) {
+        out.push({ k: k, off: POS[k] * DX[p], s: SIG[p], h: AMP[k] * (3.4 / SIG[p]) * .95 });
       }
       return out;
     }
     var boxes = [];   // [{pass, k, born}]
-    function draw(P, ms, fillA) {
-      var dl = '', fl = '', lastY = Y0, first = true;
-      var vis = [];
+    function draw(P, ms) {
+      var dl = '', first = true, lastY = Y0, vis = [];
       for (var p = 1; p <= LAST; p++) {
         var c = CENTER + (p - P) * W;
         if (c - W / 2 < NOW && c + W / 2 > XL) vis.push({ p: p, c: c, sp: species(p) });
       }
       for (var x = XL; x <= NOW; x += 1.5) {
-        var y = 0, yk = 0;
-        vis.forEach(function (v) {
-          v.sp.forEach(function (q) {
-            var g = q.h * gauss(x, v.c + q.off, q.s);
-            y += g; if (v.p === LAST) yk += g;
-          });
-        });
-        // Nothing has been recorded beyond the newest pass yet.
-        var px = x.toFixed(1), py = (Y0 - y * H).toFixed(1);
-        dl += (first ? 'M' : ' L') + px + ' ' + py;
-        fl += (first ? 'M' : ' L') + px + ' ' + (Y0 - yk * H).toFixed(1);
+        var y = 0;
+        vis.forEach(function (v) { v.sp.forEach(function (q) { y += q.h * gauss(x, v.c + q.off, q.s); }); });
+        dl += (first ? 'M' : ' L') + x.toFixed(1) + ' ' + (Y0 - y * H).toFixed(1);
         first = false; lastY = Y0 - y * H;
       }
       line.setAttribute('d', dl);
-      fill.setAttribute('d', fl + ' L' + NOW + ' ' + Y0 + ' L' + XL + ' ' + Y0 + ' Z');
-      fill.setAttribute('opacity', (.85 * fillA).toFixed(2));
       pen.setAttribute('cx', NOW); pen.setAttribute('cy', lastY.toFixed(1));
-      // Cut boxes stay on the recorded pass and travel with it.
+      // Isolated fractions: shaded peak, dashed box and number. They travel with their pass.
       cutLayer.innerHTML = '';
       boxes.forEach(function (bx) {
-        var c = CENTER + (bx.pass - P) * W, q = passParams(bx.pass), x0 = c + POS[bx.k] * q.dx;
-        var hgt = AMP[bx.k] * (3.4 / q.s) * .95 * H + 12, wd = q.s * 4.2;
-        var o = Math.min(1, (ms - bx.born) / 350);
+        var c = CENTER + (bx.pass - P) * W, s = SIG[bx.pass], x0 = c + POS[bx.k] * DX[bx.pass];
+        var hpk = AMP[bx.k] * (3.4 / s) * .95, hgt = hpk * H + 10, wd = s * 5;
         if (x0 + wd < XL || x0 - wd > NOW) return;
+        var o = Math.min(1, (ms - bx.born) / 350), tgt = bx.k === TARGET, col = tgt ? BLUE : GRAPH;
+        var d = 'M' + (x0 - wd / 2).toFixed(1) + ' ' + Y0;
+        for (var xx = x0 - wd / 2; xx <= x0 + wd / 2; xx += 1) d += ' L' + xx.toFixed(1) + ' ' + (Y0 - hpk * H * gauss(xx, x0, s)).toFixed(1);
+        d += ' L' + (x0 + wd / 2).toFixed(1) + ' ' + Y0 + ' Z';
+        el('path', { d: d, fill: col, 'fill-opacity': ((tgt ? .85 : .28) * o).toFixed(2) }, cutLayer);
         el('rect', { x: (x0 - wd / 2).toFixed(1), y: (Y0 - hgt).toFixed(1), width: wd.toFixed(1), height: hgt.toFixed(1),
-          fill: GRAPH, 'fill-opacity': (.14 * o).toFixed(2), stroke: GRAPH, 'stroke-opacity': (.8 * o).toFixed(2),
-          'stroke-dasharray': '3 2', 'stroke-width': 1 }, cutLayer);
+          fill: 'none', stroke: col, 'stroke-opacity': (.8 * o).toFixed(2), 'stroke-dasharray': '3 2', 'stroke-width': 1 }, cutLayer);
+        var t = el('text', { x: x0.toFixed(1), y: (Y0 - hgt - 5).toFixed(1), 'font-size': 11, 'text-anchor': 'middle',
+          'font-weight': tgt ? 700 : 500, fill: tgt ? BLUE : GRAPH, opacity: o.toFixed(2) }, cutLayer);
+        t.textContent = '#' + num(bx.k);
       });
       passLab.innerHTML = '';
       vis.forEach(function (v) {
         if (v.c > NOW - 20) return;
-        var t = el('text', { x: v.c.toFixed(1), y: Y0 + 20, 'font-size': 11.5, 'text-anchor': 'middle',
-          class: v.p === LAST ? '' : 'g', 'font-weight': v.p === LAST ? 600 : 400 }, passLab);
-        t.textContent = v.p === LAST ? 'Collected' : 'Pass ' + v.p;
+        var t = el('text', { x: v.c.toFixed(1), y: Y0 + 20, 'font-size': 11.5, 'text-anchor': 'middle', class: 'g' }, passLab);
+        t.textContent = 'Pass ' + v.p;
       });
     }
-    // Timeline (ms): scroll to pass 5, cut low MW, scroll to 6, cut high MW, scroll to 7, collect.
-    var STEP = 1100, P0 = .35;
-    var T1 = (5 - P0) * STEP, T2 = T1 + 1500, T3 = T2 + STEP, T4 = T3 + 1500, T5 = T4 + STEP,
-        T6 = T5 + 700, T7 = T6 + 2300, LOOP = T7 + 500;
-    function addCuts(pass, ks, born) {
-      ks.forEach(function (k) {
-        if (!boxes.some(function (b) { return b.pass === pass && b.k === k; })) boxes.push({ pass: pass, k: k, born: born });
-      });
+    // Timeline (ms): scroll in passes 1 to 4, then hold at passes 4, 5 and 6 to isolate each pair.
+    var STEP = 1100, P0 = .35, HOLD = 1600;
+    var T1 = (4 - P0) * STEP, T2 = T1 + HOLD, T3 = T2 + STEP, T4 = T3 + HOLD, T5 = T4 + STEP,
+        T6 = T5 + HOLD, T7 = T6 + 2200, LOOP = T7 + 500;
+    function take(pass, born) {
+      for (var k in TAKEN) if (TAKEN[k] === pass && !boxes.some(function (b) { return b.pass === pass && b.k === +k; }))
+        boxes.push({ pass: pass, k: +k, born: born });
     }
     var lastM = 0;
     function frame(ms) {
-      var m = ms % LOOP, P, fa = 0, sub;
+      var m = ms % LOOP, P, sub;
       if (m < lastM) boxes = [];   // a new loop starts with a clean trace
       lastM = m;
       if (m < T1) { P = P0 + m / STEP; sub = 'Each pass resolves the oligomers further'; }
-      else if (m < T2) { P = 5; addCuts(5, LOW, ms - (m - T1)); sub = 'Pass 5: cut the low-MW species'; }
-      else if (m < T3) { P = 5 + (m - T2) / STEP; sub = 'Recycling the rest'; }
-      else if (m < T4) { P = 6; addCuts(6, HIGH, ms - (m - T3)); sub = 'Pass 6: cut the high-MW species'; }
-      else if (m < T5) { P = 6 + (m - T4) / STEP; sub = 'Only the target returns'; }
-      else if (m < T6) { P = 7; fa = ease((m - T5) / (T6 - T5)); sub = 'One species collected'; }
-      else if (m < T7) { P = 7; fa = 1; sub = 'One species, multigram scale'; }
-      else { P = 7; fa = 1; sub = 'One species, multigram scale'; svg.style.opacity = (1 - (m - T7) / 500).toFixed(2); }
-      if (m < T7) svg.style.opacity = 1;
+      else if (m < T2) { P = 4; take(4, ms - (m - T1)); sub = 'Pass 4: #1 and #2 isolated'; }
+      else if (m < T3) { P = 4 + (m - T2) / STEP; sub = 'Recycling the rest'; }
+      else if (m < T4) { P = 5; take(5, ms - (m - T3)); sub = 'Pass 5: #3 and #4 isolated. #4 is the target'; }
+      else if (m < T5) { P = 5 + (m - T4) / STEP; sub = 'Recycling the rest'; }
+      else if (m < T6) { P = 6; take(6, ms - (m - T5)); sub = 'Pass 6: #5 and #6 isolated'; }
+      else { P = 6; sub = 'Six single species, each at baseline'; }
+      svg.style.opacity = m > T7 ? (1 - (m - T7) / 500).toFixed(2) : 1;
       tSub.textContent = sub;
-      draw(P, ms, fa);
+      draw(P, ms);
     }
     animate(svg, frame, function () {
-      boxes = [{ pass: 6, k: 0, born: -1e9 }, { pass: 6, k: 1, born: -1e9 }];
-      tSub.textContent = 'One species, multigram scale'; draw(7, 0, 1);
+      boxes = [4, 5, 6].reduce(function (acc, pass) {
+        for (var k in TAKEN) if (TAKEN[k] === pass) acc.push({ pass: pass, k: +k, born: -1e9 });
+        return acc;
+      }, []);
+      tSub.textContent = 'Six single species, each at baseline'; draw(6, 0);
     });
   });
 
