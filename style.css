@@ -311,3 +311,21 @@ table.tally .bar.alt{background:var(--graphite)}
 /* group photo: keep the full frame, nobody cropped */
 .groupimg.wide-photo{aspect-ratio:auto; object-fit:contain}
 .groupfig img[src*="group-2026"]{aspect-ratio:auto; object-fit:contain}
+
+/* ---------- gallery treatment (Apple-style): mist band, white rounded tiles, no borders ---------- */
+#areas{background:var(--mist); border-top:0}
+#areas .area .card{border:0; border-radius:18px}
+#areas .area:hover .card img{transform:scale(1.035)}
+.mdfig.card{background:var(--mist); border:0; border-radius:22px; padding:22px}
+.mdgrid video{border-radius:12px; background:#fff}
+.mdgrid .lab{color:var(--ink)}
+.mdgrid .lab.dis{color:var(--graphite)} .mdgrid .lab.disc{color:var(--blue)}
+.mdtoggle{border-radius:999px; background:var(--page); color:var(--graphite); border-color:var(--rule)}
+.groupimg,.groupfig img{border-radius:18px}
+.gallery img{border-radius:12px}
+ul.members .ph{border-radius:14px}
+.pi2 .ph{border-radius:14px}
+ol.pubs .thumb{border-radius:10px}
+.brushctl button:first-child{border-radius:999px 0 0 999px}
+.brushctl button:last-child{border-radius:0 999px 999px 0}
+@media(max-width:900px){ .mdfig.card{padding:14px; border-radius:18px} }
