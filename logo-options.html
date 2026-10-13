@@ -11,6 +11,9 @@
 .opt .row{margin-top:22px; display:flex; flex-wrap:wrap; gap:18px; align-items:center}
 .tile{width:132px; height:132px; border-radius:22px; display:grid; place-items:center; background:#fff; border:1px solid var(--rule)}
 .tile.dark{background:#111113; border-color:#111113}
+.tile .cap{position:absolute}
+.tcap{font-size:11px; color:#6E6E73; text-align:center; margin-top:6px}
+.tw{display:flex; flex-direction:column; align-items:center}
 .tile img{width:84px; height:84px}
 .lock{padding:18px 22px; border-radius:18px; background:#fff; border:1px solid var(--rule)}
 .lock img{height:56px; width:auto}
@@ -38,12 +41,42 @@
 
 <div class="pagehead grid">
   <h1>Logo concepts</h1>
-  <p class="lede">Back to the original idea: precision building blocks that fit exactly. Two
-  identical L blocks, one turned over, lock into a perfect rectangle. LL, for Lawrence Lab.</p>
+  <p class="lede">Precision, functional material and building blocks, in a form meant to last
+  thirty years. The marks we explored on the way are kept below for comparison.</p>
 </div>
 
 <section class="block"><div class="grid">
-  <div class="blockhead">J and L</div>
+  <div class="blockhead">Timeless</div>
+  <div class="lo">
+    <p class="why" style="margin-bottom:8px">Built only from squares and a circle on a strict grid: one gap (a sixth of a unit) and
+    one corner radius (a seventh of a unit) everywhere, with the circle drawn 3.5% larger so it reads
+    the same size as a square. Each mark is tested in colour, in one colour, on dark, and at 16 px.</p>
+    <div class="opt">
+      <h3>Seated<span class="rec">Recommended</span></h3>
+      <p class="why">One solid L-shaped block with a circle seated exactly in its corner, the same gap from both faces. A precisely shaped building block holding a functional unit, the way a ligand holds a particle. Reads as "L." at a glance. Unlike the two grids below, it does not look like an interface icon.</p>
+      <div class="row"><div class="tw"><div class="tile"><img src="logo/v5/k3-seated.svg" alt=""></div><div class="tcap">Colour</div></div><div class="tw"><div class="tile"><img src="logo/v5/k3-seated-mono.svg" alt=""></div><div class="tcap">One colour</div></div><div class="tw"><div class="tile dark"><img src="logo/v5/k3-seated-dark.svg" alt=""></div><div class="tcap">Dark</div></div><div class="tw"><div class="tile"><img src="logo/v5/k3-outline.svg" alt=""></div><div class="tcap">Outline</div></div><div class="tw"><div class="tile"><img src="logo/v5/k3-construction.svg" alt=""></div><div class="tcap">Construction</div></div></div>
+      <div class="row"><div class="lock"><img src="logo/v5/k3-seated-lockup.svg" alt="Lockup with the lab name"></div>
+        <div class="fav"><img src="logo/v5/k3-seated.svg" width="32" height="32" alt=""><img src="logo/v5/k3-seated.svg" width="16" height="16" alt="">32 and 16 px</div></div>
+    </div>
+    <div class="opt">
+      <h3>Three and one</h3>
+      <p class="why">Three identical squares and one circle on a 2 by 2 grid. The squares are building blocks, the circle is function (a particle, an active unit), and the circle fits its cell exactly, which is precision. The three squares also form an L. Simple enough to draw from memory, but close to Google's Material widgets icon.</p>
+      <div class="row"><div class="tw"><div class="tile"><img src="logo/v5/k1-threeone.svg" alt=""></div><div class="tcap">Colour</div></div><div class="tw"><div class="tile"><img src="logo/v5/k1-threeone-mono.svg" alt=""></div><div class="tcap">One colour</div></div><div class="tw"><div class="tile dark"><img src="logo/v5/k1-threeone-dark.svg" alt=""></div><div class="tcap">Dark</div></div><div class="tw"><div class="tile"><img src="logo/v5/k1-outline.svg" alt=""></div><div class="tcap">Outline</div></div><div class="tw"><div class="tile"><img src="logo/v5/k1-construction.svg" alt=""></div><div class="tcap">Construction</div></div></div>
+      <div class="row"><div class="lock"><img src="logo/v5/k1-threeone-lockup.svg" alt="Lockup with the lab name"></div>
+        <div class="fav"><img src="logo/v5/k1-threeone.svg" width="32" height="32" alt=""><img src="logo/v5/k1-threeone.svg" width="16" height="16" alt="">32 and 16 px</div></div>
+    </div>
+    <div class="opt">
+      <h3>Lattice</h3>
+      <p class="why">Eight identical squares around one circle on a 3 by 3 grid. A material built from exact units, with function placed precisely at its centre. Reads more as a material than as a letter. Risks looking like an app grid or keypad.</p>
+      <div class="row"><div class="tw"><div class="tile"><img src="logo/v5/k2-lattice.svg" alt=""></div><div class="tcap">Colour</div></div><div class="tw"><div class="tile"><img src="logo/v5/k2-lattice-mono.svg" alt=""></div><div class="tcap">One colour</div></div><div class="tw"><div class="tile dark"><img src="logo/v5/k2-lattice-dark.svg" alt=""></div><div class="tcap">Dark</div></div><div class="tw"><div class="tile"><img src="logo/v5/k2-construction.svg" alt=""></div><div class="tcap">Construction</div></div></div>
+      <div class="row"><div class="lock"><img src="logo/v5/k2-lattice-lockup.svg" alt="Lockup with the lab name"></div>
+        <div class="fav"><img src="logo/v5/k2-lattice.svg" width="32" height="32" alt=""><img src="logo/v5/k2-lattice.svg" width="16" height="16" alt="">32 and 16 px</div></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="block"><div class="grid">
+  <div class="blockhead">Explored: J and L</div>
   <div class="lo">
     <div class="opt">
       <h3>JL · Tetris pieces</h3>
@@ -56,7 +89,7 @@
       </div>
     </div>
     <div class="opt">
-      <h3>JL · Tall<span class="rec">Recommended</span></h3>
+      <h3>JL · Tall</h3>
       <p class="why">One block taller, so the stems rise like a single sharp peak above a flat baseline: a monodisperse MALDI spectrum. The two tones keep J and L readable. The last tile shows LSU purple and gold.</p>
       <div class="row">
         <div class="tile"><img src="logo/v4/j2-tall.svg" alt=""></div>
@@ -90,7 +123,7 @@
 </div></section>
 
 <section class="block"><div class="grid">
-  <div class="blockhead">Building blocks</div>
+  <div class="blockhead">Explored: LL</div>
   <div class="lo">
     <div class="opt">
       <h3>1 · LL lock</h3>
