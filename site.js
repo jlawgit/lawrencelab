@@ -23,6 +23,173 @@
     window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
   }
 
+
+  // ---------- explainer animations inside research-area cards ----------
+  var NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e); return e;
+  }
+  function gauss(x, mu, s) { return Math.exp(-(x - mu) * (x - mu) / (2 * s * s)); }
+  function ease(t) { return t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+  function mix(a, b, t) { return a + (b - a) * t; }
+  function mixColor(c1, c2, t) {
+    var p = function (c, i) { return parseInt(c.slice(1 + 2 * i, 3 + 2 * i), 16); };
+    var r = [0, 1, 2].map(function (i) { return Math.round(mix(p(c1, i), p(c2, i), t)); });
+    return 'rgb(' + r.join(',') + ')';
+  }
+  var INK = '#1D1D1F', GRAPH = '#6E6E73', BLUE = '#0071E3', RULE = '#D2D2D7';
+
+  // Run a frame function only while its figure is on screen.
+  function animate(svg, frame, still) {
+    if (reduce) { still(); return; }
+    var on = false, t0 = null, raf = null;
+    function tick(now) {
+      if (t0 === null) t0 = now;
+      frame(now - t0);
+      if (on) raf = requestAnimationFrame(tick);
+    }
+    still();
+    new IntersectionObserver(function (e) {
+      on = e[0].isIntersecting;
+      if (on) { t0 = null; raf = requestAnimationFrame(tick); } else cancelAnimationFrame(raf);
+    }).observe(svg);
+  }
+
+  // Recycling preparative HPLC: overlapping oligomers resolve pass by pass, one is collected.
+  document.querySelectorAll('svg[data-anim="hplc"]').forEach(function (svg) {
+    var X0 = 28, X1 = 372, Y0 = 236, H = 150;
+    el('line', { x1: X0, y1: Y0, x2: X1, y2: Y0, stroke: RULE, 'stroke-width': 1.5 }, svg);
+    var tPass = el('text', { x: X0, y: 44, 'font-size': 17, 'font-weight': 600 }, svg);
+    var tSub = el('text', { x: X0, y: 66, 'font-size': 13, class: 'g' }, svg);
+    var tx = el('text', { x: X1, y: Y0 + 26, 'font-size': 12, 'text-anchor': 'end', class: 'g' }, svg);
+    tx.textContent = 'Retention time';
+    var fill = el('path', { fill: BLUE, opacity: 0 }, svg);
+    var line = el('path', { fill: 'none', stroke: INK, 'stroke-width': 2, 'stroke-linejoin': 'round' }, svg);
+    var AMP = [.5, .82, 1, .88, .66, .42], KEEP = 2, N = 140;
+    function draw(t, h) {   // t: 0 unresolved to 1 resolved; h: collection highlight 0 to 1
+      // Peaks narrow and separate with each pass. Height scales as 1/width so area is conserved.
+      var d = mix(.03, .118, t), s = mix(.072, .02, t), dl = 'M', fl = 'M';
+      for (var i = 0; i <= N; i++) {
+        var u = i / N, y = 0, yk = 0;
+        for (var k = 0; k < AMP.length; k++) {
+          var g = AMP[k] * gauss(u, .5 + (k - 2.5) * d, s) * (.02 / s) * .95;
+          y += k === KEEP ? g : g * (1 - .75 * h); if (k === KEEP) yk = g;
+        }
+        var px = mix(X0, X1, u).toFixed(1);
+        dl += (i ? ' L' : '') + px + ' ' + (Y0 - y * H).toFixed(1);
+        fl += (i ? ' L' : '') + px + ' ' + (Y0 - yk * H).toFixed(1);
+      }
+      line.setAttribute('d', dl);
+      fill.setAttribute('d', fl + ' Z'); fill.setAttribute('opacity', (.85 * h).toFixed(2));
+    }
+    var SEP = 5200, HOLD1 = 700, COL = 900, HOLD2 = 2200, OUT = 500, LOOP = HOLD1 + SEP + COL + HOLD2 + OUT;
+    function label(pass, sub) { tPass.textContent = pass; tSub.textContent = sub; }
+    animate(svg, function (ms) {
+      var m = ms % LOOP;
+      if (m < HOLD1) { draw(0, 0); label('Pass 1', 'A mixture of oligomers'); }
+      else if (m < HOLD1 + SEP) {
+        var t = (m - HOLD1) / SEP; draw(ease(t), 0);
+        label('Pass ' + (1 + Math.min(5, Math.floor(t * 6))), 'Recycling through the column');
+      } else if (m < HOLD1 + SEP + COL) { draw(1, ease((m - HOLD1 - SEP) / COL)); label('Pass 6', 'Collecting one species'); }
+      else if (m < LOOP - OUT) { draw(1, 1); label('Pass 6', 'One species, multigram scale'); }
+      else { var r = (m - LOOP + OUT) / OUT; draw(1 - ease(r), 1 - r); label('Pass 1', 'A mixture of oligomers'); }
+    }, function () { draw(1, 1); label('Pass 6', 'One species, multigram scale'); });
+  });
+
+  // 19F NMR and MRI: disperse agents give a broad, split signal and a dim, patchy image.
+  document.querySelectorAll('svg[data-anim="nmr"]').forEach(function (svg) {
+    var X0 = 24, X1 = 236, Y0 = 222, H = 150;
+    var t1 = el('text', { x: X0, y: 44, 'font-size': 15, 'font-weight': 600 }, svg);
+    t1.innerHTML = '<tspan font-size="10" dy="-6">19</tspan><tspan dy="6">F NMR</tspan>';
+    el('line', { x1: X0, y1: Y0, x2: X1, y2: Y0, stroke: RULE, 'stroke-width': 1.5 }, svg);
+    var ppm = el('text', { x: X1, y: Y0 + 22, 'font-size': 12, 'text-anchor': 'end', class: 'g' }, svg);
+    ppm.textContent = 'ppm';
+    var spec = el('path', { fill: 'none', 'stroke-width': 2, 'stroke-linejoin': 'round' }, svg);
+    var t2 = el('text', { x: 276, y: 44, 'font-size': 15, 'font-weight': 600 }, svg); t2.textContent = 'MRI';
+    el('rect', { x: 268, y: 92, width: 112, height: 112, fill: '#0B0B0C' }, svg);
+    var disc = el('circle', { cx: 324, cy: 148, r: 40 }, svg);
+    var patches = [[-14, -12, 15], [16, -8, 12], [-6, 16, 13], [18, 18, 9], [-22, 8, 8], [4, -24, 9]].map(function (p, i) {
+      return el('circle', { cx: 324 + p[0], cy: 148 + p[1], r: p[2], fill: i % 2 ? '#3A3A3C' : '#8E8E93' }, svg);
+    });
+    var state = el('text', { x: X0, y: 272, 'font-size': 14, 'font-weight': 600 }, svg);
+    var A = [.3, .44, .52, .42, .28], C = [.3, .4, .5, .6, .7], N = 180;
+    function draw(p) {
+      var w = mix(.03, .011, p), d = 'M';
+      for (var i = 0; i <= N; i++) {
+        var u = i / N, y = 0;
+        for (var k = 0; k < A.length; k++) y += mix(A[k], .2, p) * gauss(u, mix(C[k], .5, p), w);
+        d += (i ? ' L' : '') + mix(X0, X1, u).toFixed(1) + ' ' + (Y0 - y * H).toFixed(1);
+      }
+      spec.setAttribute('d', d);
+      var col = mixColor(GRAPH, BLUE, p);
+      spec.setAttribute('stroke', col); state.setAttribute('fill', col);
+      var g = Math.round(mix(88, 236, p));
+      disc.setAttribute('fill', 'rgb(' + g + ',' + g + ',' + g + ')');
+      patches.forEach(function (c) { c.setAttribute('opacity', (1 - p).toFixed(2)); });
+      state.innerHTML = p < .5 ? 'Disperse side chains, <tspan font-style="italic">Đ</tspan> &gt; 1'
+                               : 'Discrete side chains, <tspan font-style="italic">Đ</tspan> = 1';
+    }
+    var HOLD = 1800, GO = 1500, KEEP = 2800, BACK = 900, LOOP = HOLD + GO + KEEP + BACK;
+    animate(svg, function (ms) {
+      var m = ms % LOOP;
+      if (m < HOLD) draw(0);
+      else if (m < HOLD + GO) draw(ease((m - HOLD) / GO));
+      else if (m < HOLD + GO + KEEP) draw(1);
+      else draw(1 - ease((m - HOLD - GO - KEEP) / BACK));
+    }, function () { draw(1); });
+  });
+
+
+  // ---------- MD videos: load when visible, play in sync, pausable ----------
+  document.querySelectorAll('.mdfig').forEach(function (fig) {
+    var vids = [].slice.call(fig.querySelectorAll('video'));
+    var btn = fig.querySelector('.mdtoggle');
+    var saveData = navigator.connection && navigator.connection.saveData;
+    var userPaused = reduce || saveData, loaded = false, visible = false;
+    function load() {
+      if (loaded) return; loaded = true;
+      vids.forEach(function (v) { v.src = v.getAttribute('data-src'); v.load(); });
+    }
+    function play() {
+      load();
+      var t = vids[0].currentTime;
+      vids.forEach(function (v) {
+        if (Math.abs(v.currentTime - t) > 0.15) v.currentTime = t;
+        var p = v.play();
+        if (p) p.catch(function () { v.addEventListener('canplay', function () { if (visible && !userPaused) v.play(); }, { once: true }); });
+      });
+    }
+    var selfPause = false;
+    function pause() { selfPause = true; vids.forEach(function (v) { v.pause(); }); selfPause = false; }
+    // If the browser blocks or stops playback (Low Power Mode, autoplay rules), offer Play.
+    vids[0].addEventListener('pause', function () {
+      if (selfPause || vids[0].ended) return;
+      userPaused = true; label(); vids.forEach(function (v) { v.pause(); });
+    });
+    function label() {
+      btn.textContent = userPaused ? 'Play' : 'Pause';
+      btn.setAttribute('aria-pressed', userPaused ? 'true' : 'false');
+    }
+    // Restart all three together so the panels stay in step.
+    vids[0].addEventListener('ended', function () {
+      vids.forEach(function (v) { v.currentTime = 0; });
+      if (visible && !userPaused) play();
+    });
+    btn.addEventListener('click', function () {
+      userPaused = !userPaused; label();
+      userPaused ? pause() : play();
+    });
+    label();
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (e) {
+        visible = e[e.length - 1].isIntersecting;
+        if (visible && !userPaused) play(); else pause();
+      }, { rootMargin: '200px 0px' }).observe(fig);
+    }
+  });
+
   // Hero: BBP (disperse backbone and side chains) -> PBP (discrete side chains)
   // -> DBP (discrete backbone and side chains). Three molecules stand in for a sample.
   var fig = document.querySelector('.brushfig');

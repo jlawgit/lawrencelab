@@ -1050,12 +1050,18 @@
     <p class="quiet">So we make samples in which every molecule is the same. Change one feature
     of the structure, and we can measure what that feature alone does.</p>
   </div>
-  <figure class="wide card" data-reveal>
-    <img src="images/architecture.png" alt="Coarse-grained molecular dynamics of disperse and discrete bottlebrush polymers at an interface." loading="lazy">
+  <figure class="wide card mdfig" data-reveal>
+    <div class="mdgrid">
+      <div><video muted playsinline preload="none" poster="media/md-disperse.jpg" data-src="media/md-disperse.mp4" aria-label="Disperse bottlebrushes compressed at an interface"></video><p class="lab dis">Disperse</p></div>
+      <div><video muted playsinline preload="none" poster="media/md-diblock.jpg" data-src="media/md-diblock.mp4" aria-label="Diblock bottlebrushes compressed at an interface"></video><p class="lab">Diblock</p></div>
+      <div><video muted playsinline preload="none" poster="media/md-discrete.jpg" data-src="media/md-discrete.mp4" aria-label="Discrete bottlebrushes compressed at an interface"></video><p class="lab disc">Discrete</p></div>
+    </div>
+    <button type="button" class="mdtoggle" aria-pressed="false">Pause</button>
   </figure>
-  <p class="figcap" data-reveal><b>Uniform side chains let bottlebrushes align.</b> Same
-  chemistry, two side-chain distributions. Disperse brushes pack without order, and discrete
-  brushes align. Coarse-grained molecular dynamics at the air&ndash;water interface.</p>
+  <p class="figcap" data-reveal><b>Uniform side chains let bottlebrushes align.</b> Three
+  bottlebrush monolayers compressed at the air&ndash;water interface. Disperse brushes pack
+  without order, and discrete brushes align. Coarse-grained molecular dynamics, shown at
+  2&times; speed.</p>
   <div class="aims">
     <div data-reveal><span class="n">01</span><p>Create precise polymeric building blocks</p></div>
     <div data-reveal><span class="n">02</span><p>Understand structure and property relationships in complex polymers</p></div>
@@ -1072,12 +1078,12 @@
       <p>With backbone and side-chain lengths fixed, we can change topology one feature at a time.</p>
     </article>
     <article class="area" data-reveal>
-      <div class="card"><img src="images/areas/mri.jpg" alt="Mass spectra, fluorine-19 NMR and MRI images of disperse and discrete contrast agents." loading="lazy"></div>
+      <div class="card anim"><svg data-anim="nmr" viewBox="0 0 400 300" role="img" aria-label="As side chains become uniform, the broad fluorine-19 NMR signal collapses into one sharp peak and the MRI image brightens."></svg></div>
       <span class="idx">02</span><h3>Metal-free <sup>19</sup>F MRI contrast agents</h3>
       <p>Architecture governs imaging performance more than fluorine content does. No gadolinium.</p>
     </article>
     <article class="area" data-reveal>
-      <div class="card"><img src="images/areas/separation.jpg" alt="Automated separation of a 15 g oligomer mixture into discrete oligomers." loading="lazy"></div>
+      <div class="card anim"><svg data-anim="hplc" viewBox="0 0 400 300" role="img" aria-label="With each pass through the recycling column, a broad oligomer peak resolves into single species, and one species is collected."></svg></div>
       <span class="idx">03</span><h3>Templated synthesis and automated separation</h3>
       <p>Recycling preparative chromatography isolates single-species oligomers on a multigram scale.</p>
     </article>
