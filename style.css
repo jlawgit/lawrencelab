@@ -307,3 +307,7 @@ table.tally .bar.alt{background:var(--graphite)}
   .mdgrid{grid-template-columns:1fr; gap:20px}
   .mdfig{padding:14px}
 }
+
+/* group photo: keep the full frame, nobody cropped */
+.groupimg.wide-photo{aspect-ratio:auto; object-fit:contain}
+.groupfig img[src*="group-2026"]{aspect-ratio:auto; object-fit:contain}
