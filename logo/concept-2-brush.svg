@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" width="200" height="48">
+<line x1="4" y1="20" x2="64" y2="20" stroke="#1D1D1F" stroke-width="3.4"/>
+<line x1="8" y1="8" x2="8" y2="32" stroke="#1D1D1F" stroke-width="2.1"/><line x1="15" y1="8" x2="15" y2="32" stroke="#1D1D1F" stroke-width="2.1"/><line x1="22" y1="8" x2="22" y2="32" stroke="#1D1D1F" stroke-width="2.1"/><line x1="29" y1="8" x2="29" y2="32" stroke="#1D1D1F" stroke-width="2.1"/><line x1="36" y1="8" x2="36" y2="32" stroke="#1D1D1F" stroke-width="2.1"/><line x1="43" y1="8" x2="43" y2="32" stroke="#1D1D1F" stroke-width="2.1"/><line x1="50" y1="8" x2="50" y2="32" stroke="#1D1D1F" stroke-width="2.1"/><line x1="57" y1="8" x2="57" y2="32" stroke="#1D1D1F" stroke-width="2.1"/>
+<text x="80" y="23" font-family="Helvetica Neue,Helvetica,Arial" font-size="17" font-weight="700" fill="#1D1D1F" letter-spacing="-0.4">Lawrence</text>
+<text x="80" y="36" font-family="Helvetica Neue,Helvetica,Arial" font-size="11" fill="#6E6E73" letter-spacing="1.6">LAB</text>
+</svg>

@@ -18,10 +18,10 @@ a{color:inherit;text-decoration:none}
 
 /* ---------- masthead ---------- */
 header.top{border-bottom:1px solid var(--ink)}
-header.top .grid{align-items:baseline; padding-top:20px; padding-bottom:16px}
-.wordmark{grid-column:1/4; font-size:15px; font-weight:700; letter-spacing:-.01em}
+header.top .grid{align-items:baseline; padding-top:22px; padding-bottom:18px}
+.wordmark{grid-column:1/4; font-size:22px; font-weight:700; letter-spacing:-.022em; line-height:1.1}
 .wordmark a{color:inherit}
-.wordmark span{font-weight:400; color:var(--graphite); display:block; font-size:13px; letter-spacing:0}
+.wordmark span{font-weight:400; color:var(--graphite); display:block; font-size:12.5px; letter-spacing:0; margin-top:1px}
 nav.main{grid-column:5/13; display:flex; gap:28px; justify-content:flex-end; min-width:0}
 nav.main::-webkit-scrollbar{display:none}
 nav.main a{font-size:13px; color:var(--graphite); padding-bottom:1px; border-bottom:1px solid transparent}
@@ -146,4 +146,35 @@ ul.news time{font-size:13px; color:var(--graphite); font-variant-numeric:tabular
   ul.roster li{display:block}
   ul.roster .rl{display:block; text-align:left; margin-top:2px}
   ul.news li{grid-template-columns:1fr; gap:2px}
+}
+
+
+/* ---------- PI block ---------- */
+.pi{grid-column:4/13; display:grid; grid-template-columns:1fr 1fr; gap:0 56px}
+.pi .bio{grid-column:1/3; max-width:46em}
+.pi h3{font-size:22px; font-weight:600; letter-spacing:-.018em}
+.pi .tt{font-size:14px; color:var(--graphite); margin-top:3px}
+.pi p{font-size:16px; line-height:1.55; margin-top:16px}
+.pi .links{margin-top:16px; font-size:14px}
+.pi .links a{color:var(--blue)}
+.pi .links span{color:var(--rule); margin:0 8px}
+
+/* ---------- publications with thumbnails ---------- */
+ol.pubs li{display:grid; grid-template-columns:132px 1fr; gap:22px; align-items:start;
+  padding:20px 0 20px 0}
+ol.pubs li::before{display:none}
+ol.pubs .thumb{border:1px solid var(--rule); background:var(--mist); aspect-ratio:3/2;
+  display:block; overflow:hidden}
+ol.pubs .thumb img{width:100%; height:100%; object-fit:cover; object-position:center}
+ol.pubs .thumb.none{display:grid; place-items:center; font-size:10px; color:var(--graphite);
+  letter-spacing:.06em; text-transform:uppercase}
+ol.pubs .meta{margin-top:7px; font-size:13px}
+ol.pubs .meta a{color:var(--blue)}
+ol.pubs .meta span{color:var(--rule); margin:0 7px}
+
+@media(max-width:900px){
+  .pi{grid-template-columns:1fr}
+  .pi .bio{grid-column:1}
+  ol.pubs li{grid-template-columns:92px 1fr; gap:16px}
+  .wordmark{font-size:20px}
 }
