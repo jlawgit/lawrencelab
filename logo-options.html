@@ -8,6 +8,16 @@
 <script src="site.js" defer></script>
 <style>
 .lo{grid-column:4/13}
+.opt .row{margin-top:22px; display:flex; flex-wrap:wrap; gap:18px; align-items:center}
+.tile{width:132px; height:132px; border-radius:22px; display:grid; place-items:center; background:#fff; border:1px solid var(--rule)}
+.tile.dark{background:#111113; border-color:#111113}
+.tile img{width:84px; height:84px}
+.lock{padding:18px 22px; border-radius:18px; background:#fff; border:1px solid var(--rule)}
+.lock img{height:56px; width:auto}
+.fav{display:flex; gap:14px; align-items:center; font-size:12px; color:#6E6E73}
+.fav img{display:block}
+.opt .why{font-size:15px; color:var(--graphite); margin-top:6px; max-width:38em}
+.rec{display:inline-block; font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); font-weight:600; margin-left:10px}
 .opt{border-top:1px solid var(--rule); padding:34px 0}
 .opt:first-child{border-top:1px solid var(--ink)}
 .opt h3{font-size:17px; font-weight:600}
@@ -28,51 +38,67 @@
 
 <div class="pagehead grid">
   <h1>Logo concepts</h1>
-  <p class="lede">Three directions for comparison. Nothing here is live. The site currently uses
-  the plain wordmark, now set larger in the header.</p>
+  <p class="lede">Five directions in the site's own language: beads, ink, and blue for discrete.
+  Each is shown on light and dark, as a lockup with the name, and at favicon size.</p>
 </div>
 
 <section class="block"><div class="grid">
   <div class="blockhead">Concepts</div>
   <div class="lo">
-
     <div class="opt">
-      <h3>1 · Collapse</h3>
-      <p>A broad distribution of chain lengths resolving into a single line. This is the literal
-      content of "polymers without the average", and it is the same idea as the figure on the
-      home page. Reads at small sizes because the contrast is shape, not detail.</p>
-      <div class="swatch">
-        <div class="box"><img src="logo/concept-1-collapse.svg" alt="Collapse concept"></div>
-        <div class="box sm"><img src="logo/concept-1-collapse.svg" alt="Collapse concept, small"></div>
+      <h3>A · Discrete brush<span class="rec">Recommended</span></h3>
+      <p class="why">One discrete bottlebrush: a backbone with five identical side chains in blue. It is the DBP from the home page reduced to a symbol, so the logo and the site tell the same story. Reads at favicon size.</p>
+      <div class="row">
+        <div class="tile"><img src="logo/v2/a-brush.svg" alt=""></div>
+        <div class="tile dark"><img src="logo/v2/a-brush-dark.svg" alt=""></div>
+        <div class="lock"><img src="logo/v2/a-brush-lockup.svg" alt="A · Discrete brush with the lab name"></div>
+        <div class="fav"><img src="logo/v2/a-brush.svg" width="32" height="32" alt=""><img src="logo/v2/a-brush.svg" width="16" height="16" alt="">32 and 16 px</div>
       </div>
     </div>
-
     <div class="opt">
-      <h3>2 · Brush</h3>
-      <p>The molecule itself: a backbone with evenly spaced side chains. The most literal mark,
-      and the most immediately legible to a polymer chemist. The risk is that it describes one
-      project rather than the group.</p>
-      <div class="swatch">
-        <div class="box"><img src="logo/concept-2-brush.svg" alt="Brush concept"></div>
-        <div class="box sm"><img src="logo/concept-2-brush.svg" alt="Brush concept, small"></div>
+      <h3>B · <i>Đ</i></h3>
+      <p class="why">The dispersity symbol on an ink tile, with one blue bead for a single species. Every polymer chemist reads it at once, and it makes the strongest favicon and social avatar of the set.</p>
+      <div class="row">
+        <div class="tile"><img src="logo/v2/b-dispersity.svg" alt=""></div>
+        <div class="tile dark"><img src="logo/v2/b-dispersity-dark.svg" alt=""></div>
+        <div class="lock"><img src="logo/v2/b-dispersity-lockup.svg" alt="B · <i>Đ</i> with the lab name"></div>
+        <div class="fav"><img src="logo/v2/b-dispersity.svg" width="32" height="32" alt=""><img src="logo/v2/b-dispersity.svg" width="16" height="16" alt="">32 and 16 px</div>
       </div>
     </div>
-
     <div class="opt">
-      <h3>3 · Single peak</h3>
-      <p>A chromatography trace narrowing to one species, with the broad trace left faint behind
-      it. The most abstract of the three and the one that survives being shrunk to a favicon.
-      It also says "we measure this", which the other two do not.</p>
-      <div class="swatch">
-        <div class="box"><img src="logo/concept-3-peak.svg" alt="Single peak concept"></div>
-        <div class="box sm"><img src="logo/concept-3-peak.svg" alt="Single peak concept, small"></div>
+      <h3>C · L monogram</h3>
+      <p class="why">A bottlebrush bent into an L, with identical side chains on the outside. The only mark that carries the name. Busier than A at small sizes.</p>
+      <div class="row">
+        <div class="tile"><img src="logo/v2/c-monogram.svg" alt=""></div>
+        <div class="tile dark"><img src="logo/v2/c-monogram-dark.svg" alt=""></div>
+        <div class="lock"><img src="logo/v2/c-monogram-lockup.svg" alt="C · L monogram with the lab name"></div>
+        <div class="fav"><img src="logo/v2/c-monogram.svg" width="32" height="32" alt=""><img src="logo/v2/c-monogram.svg" width="16" height="16" alt="">32 and 16 px</div>
       </div>
     </div>
-
+    <div class="opt">
+      <h3>D · Disperse to discrete</h3>
+      <p class="why">Uneven grey columns of beads become equal blue columns, read left to right. The argument of the lab in one line. Best as a wide mark, weaker as a favicon.</p>
+      <div class="row">
+        <div class="tile"><img src="logo/v2/d-sorting.svg" alt=""></div>
+        <div class="tile dark"><img src="logo/v2/d-sorting-dark.svg" alt=""></div>
+        <div class="lock"><img src="logo/v2/d-sorting-lockup.svg" alt="D · Disperse to discrete with the lab name"></div>
+        <div class="fav"><img src="logo/v2/d-sorting.svg" width="32" height="32" alt=""><img src="logo/v2/d-sorting.svg" width="16" height="16" alt="">32 and 16 px</div>
+      </div>
+    </div>
+    <div class="opt">
+      <h3>E · Single peak</h3>
+      <p class="why">A broad distribution with one resolved species in blue. Speaks to the separation work. Simple and quiet.</p>
+      <div class="row">
+        <div class="tile"><img src="logo/v2/e-peak.svg" alt=""></div>
+        <div class="tile dark"><img src="logo/v2/e-peak-dark.svg" alt=""></div>
+        <div class="lock"><img src="logo/v2/e-peak-lockup.svg" alt="E · Single peak with the lab name"></div>
+        <div class="fav"><img src="logo/v2/e-peak.svg" width="32" height="32" alt=""><img src="logo/v2/e-peak.svg" width="16" height="16" alt="">32 and 16 px</div>
+      </div>
+    </div>
   </div>
-  <p class="note">All three are SVG, single colour on ink #1D1D1F with the secondary mark in
-  graphite #6E6E73. No gradients, no shadows, no raster. Each scales to a favicon or a poster
-  without change. Say which direction to develop and it becomes the header mark.</p>
+  <p class="note">All marks are SVG in ink #1D1D1F, graphite #6E6E73 and blue #0071E3, with no
+  gradients or shadows. B pairs well with A: A as the logo, B as the favicon and social avatar.
+  Once a direction is chosen, the lettering gets converted to outlines for the final files.</p>
 </div></section>
 
 <footer><div class="grid">
