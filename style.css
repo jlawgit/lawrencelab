@@ -146,7 +146,7 @@ html.js [data-reveal].in{opacity:1; transform:none}
 .aims > :nth-child(2){transition-delay:.08s} .aims > :nth-child(3){transition-delay:.16s}
 
 /* ---------- inner pages ---------- */
-.pagehead{padding:96px 0 0}
+.pagehead{padding-top:96px}
 .pagehead h1{grid-column:1/10; font-size:clamp(42px,5.6vw,76px); line-height:1.02;
   letter-spacing:-.038em; font-weight:700; animation:rise .9s var(--ease) both}
 .pagehead .lede{grid-column:1/8; margin-top:24px; font-size:20px; color:var(--graphite);
