@@ -170,10 +170,21 @@
     var spec = el('path', { fill: 'none', 'stroke-width': 2, 'stroke-linejoin': 'round' }, svg);
     var t2 = el('text', { x: 276, y: 44, 'font-size': 15, 'font-weight': 600 }, svg); t2.textContent = 'MRI';
     el('rect', { x: 268, y: 92, width: 112, height: 112, fill: '#0B0B0C' }, svg);
-    var disc = el('circle', { cx: 324, cy: 148, r: 40 }, svg);
-    var patches = [[-14, -12, 15], [16, -8, 12], [-6, 16, 13], [18, 18, 9], [-22, 8, 8], [4, -24, 9]].map(function (p, i) {
-      return el('circle', { cx: 324 + p[0], cy: 148 + p[1], r: p[2], fill: i % 2 ? '#3A3A3C' : '#8E8E93' }, svg);
-    });
+    // Phantom: the agent is dissolved evenly, so a disperse sample gives a uniformly dimmer,
+    // noisier image (broad lines, short T2, low SNR) with a slightly soft edge, not patches.
+    var defs = el('defs', {}, svg);
+    var blurF = el('filter', { id: 'mriBlur', x: '-20%', y: '-20%', width: '140%', height: '140%' }, defs);
+    var blur = el('feGaussianBlur', { stdDeviation: 0 }, blurF);
+    var clip = el('clipPath', { id: 'mriClip' }, defs);
+    el('circle', { cx: 324, cy: 148, r: 40 }, clip);
+    var disc = el('circle', { cx: 324, cy: 148, r: 40, filter: 'url(#mriBlur)' }, svg);
+    var noise = el('g', { 'clip-path': 'url(#mriClip)' }, svg);
+    var seed = 7; function rnd() { seed = (seed * 16807) % 2147483647; return seed / 2147483647; }
+    for (var i = 0; i < 420; i++) {
+      var a = rnd() * 6.2832, r = 40 * Math.sqrt(rnd()), g = Math.round(40 + rnd() * 200);
+      el('rect', { x: (324 + r * Math.cos(a)).toFixed(1), y: (148 + r * Math.sin(a)).toFixed(1), width: 2.2, height: 2.2,
+        fill: 'rgb(' + g + ',' + g + ',' + g + ')' }, noise);
+    }
     var state = el('text', { x: X0, y: 272, 'font-size': 14, 'font-weight': 600 }, svg);
     var A = [.3, .44, .52, .42, .28], C = [.3, .4, .5, .6, .7], N = 180;
     function draw(p) {
@@ -186,9 +197,10 @@
       spec.setAttribute('d', d);
       var col = mixColor(GRAPH, BLUE, p);
       spec.setAttribute('stroke', col); state.setAttribute('fill', col);
-      var g = Math.round(mix(88, 236, p));
+      var g = Math.round(mix(105, 238, p));
       disc.setAttribute('fill', 'rgb(' + g + ',' + g + ',' + g + ')');
-      patches.forEach(function (c) { c.setAttribute('opacity', (1 - p).toFixed(2)); });
+      noise.setAttribute('opacity', (.5 * (1 - p)).toFixed(2));
+      blur.setAttribute('stdDeviation', mix(1.8, 0, p).toFixed(2));
       state.innerHTML = p < .5 ? 'Disperse side chains, <tspan font-style="italic">Đ</tspan> &gt; 1'
                                : 'Discrete side chains, <tspan font-style="italic">Đ</tspan> = 1';
     }
