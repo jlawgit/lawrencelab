@@ -178,3 +178,47 @@ ol.pubs .meta span{color:var(--rule); margin:0 7px}
   ol.pubs li{grid-template-columns:92px 1fr; gap:16px}
   .wordmark{font-size:20px}
 }
+
+/* ---------- people: group photo, member grid, alumni, gallery ---------- */
+.groupfig{margin-top:40px}
+.groupfig figure{grid-column:1/13}
+.groupfig img{width:100%; aspect-ratio:16/9; object-fit:cover; object-position:center 35%}
+.ph{width:100%; aspect-ratio:1; object-fit:cover; background:var(--mist); display:block}
+.ph.ini{display:grid; place-items:center; font-size:28px; font-weight:600; color:var(--graphite);
+  letter-spacing:.02em}
+.pi2{display:grid; grid-template-columns:200px 1fr; gap:32px; align-items:start}
+.pi2 h3{font-size:22px; font-weight:600; letter-spacing:-.018em}
+.pi2 .tt{font-size:14px; color:var(--graphite); margin-top:3px}
+.pi2 p{font-size:16px; line-height:1.55; margin-top:14px; max-width:36em}
+ul.cv{list-style:none; margin-top:16px; max-width:40em}
+ul.cv li{border-top:1px solid var(--rule); padding:8px 0; font-size:14px; display:grid;
+  grid-template-columns:64px 1fr; gap:12px}
+ul.cv b{font-weight:600}
+.pi2 .links{margin-top:16px; font-size:14px}
+.pi2 .links a{color:var(--blue)}
+ul.members{list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:36px 28px}
+ul.members h3{font-size:16px; font-weight:600; letter-spacing:-.01em; margin-top:12px}
+ul.members p{font-size:13px; color:var(--graphite); margin-top:2px; line-height:1.45}
+ul.members p.ed{color:var(--ink); margin-top:6px}
+h4.sub{font-size:13px; font-weight:600; margin:32px 0 10px}
+h4.sub:first-child{margin-top:0}
+.gallery{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
+.gallery img{width:100%; aspect-ratio:1; object-fit:cover}
+
+/* ---------- home: group section ---------- */
+.groupsec{grid-column:4/13}
+.groupsec img{width:100%; aspect-ratio:16/9; object-fit:cover; object-position:center 35%}
+.groupsec p{font-size:19px; line-height:1.55; margin-top:20px; max-width:30em}
+.groupsec a{color:var(--blue)}
+
+@media(max-width:900px){
+  .pi2{grid-template-columns:1fr; gap:20px}
+  .pi2 .ph{max-width:200px}
+  ul.members{grid-template-columns:1fr 1fr; gap:28px 16px}
+  .gallery{grid-template-columns:1fr 1fr; gap:8px}
+  .groupsec{grid-column:1/13}
+}
+
+@media(max-width:900px){
+  footer .a,footer .b,footer .c{grid-column:1/13}
+}
