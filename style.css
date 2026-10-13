@@ -57,11 +57,17 @@ nav.main a:hover::after,nav.main a[aria-current]::after{transform:scaleX(1)}
 .hero .where{margin-top:30px; font-size:14px; color:var(--graphite); line-height:1.6}
 .brushfig{grid-column:7/13; padding-left:24px}
 svg.brush{width:100%; height:auto; overflow:visible}
-svg.brush .bb{stroke:var(--ink); stroke-width:3.5; stroke-linecap:round}
-svg.brush .b{fill:var(--blue); transform-box:fill-box; transform-origin:center;
+svg.brush .bb{stroke:var(--graphite); stroke-width:2; transform-box:fill-box; transform-origin:center;
+  transition:transform .8s var(--ease)}
+svg.brush .col{transition:transform .8s var(--ease), opacity .5s ease}
+svg.brush .col.gone{opacity:0}
+svg.brush .b, svg.brush .bk{fill:var(--blue); transform-box:fill-box; transform-origin:center;
   transition:opacity .45s var(--ease), transform .45s var(--ease), fill .6s ease}
-.brushfig.disperse .b{fill:var(--graphite)}
 svg.brush .b.off{opacity:0; transform:scale(.25)}
+.brushfig[data-state="bbp"] .b,
+.brushfig[data-state="bbp"] .bk,
+.brushfig[data-state="pbp"] .bk{fill:var(--graphite)}
+.brushcap{margin-top:12px; text-align:center; font-size:13.5px; color:var(--graphite); min-height:1.5em}
 .brushctl{display:flex; justify-content:center; margin-top:18px}
 .brushctl button{font:inherit; font-size:13px; color:var(--graphite); background:none;
   border:1px solid var(--rule); padding:8px 16px; cursor:pointer; transition:all .25s}
@@ -264,3 +270,8 @@ h4.sub:first-child{margin-top:0}
   *,*::before,*::after{animation:none !important; transition:none !important; scroll-behavior:auto !important}
   html.js [data-reveal]{opacity:1; transform:none}
 }
+
+/* support: thanks list */
+.support ul.thanks li{display:flex; justify-content:space-between; gap:16px; align-items:baseline}
+.support ul.thanks span{font-size:13.5px; color:var(--graphite); text-align:right}
+.support ul.thanks + p{font-size:14px; padding-top:12px}
