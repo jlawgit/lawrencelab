@@ -34,11 +34,15 @@ header.top{position:sticky; top:0; z-index:10; border-bottom:1px solid var(--ink
   -webkit-backdrop-filter:saturate(180%) blur(16px); backdrop-filter:saturate(180%) blur(16px)}
 header.top .grid{align-items:center; padding-top:22px; padding-bottom:20px; transition:padding .3s var(--ease)}
 header.top.scrolled .grid{padding-top:13px; padding-bottom:12px}
-.wordmark{grid-column:1/5; font-size:28px; font-weight:700; letter-spacing:-.03em; line-height:1}
-.wordmark a{color:inherit}
-.wordmark span{font-weight:400; color:var(--graphite); display:block; font-size:13px;
-  letter-spacing:0; margin-top:5px}
-nav.main{grid-column:5/13; display:flex; gap:34px; justify-content:flex-end; min-width:0}
+.wordmark{grid-column:1/6; line-height:1}
+.wordmark .brand{display:inline-flex; align-items:center; gap:14px; color:inherit}
+.wordmark .mark{height:46px; width:auto; flex:0 0 auto; transition:height .3s var(--ease)}
+.wordmark .mark .bb{stroke:var(--ink); stroke-width:4.2; stroke-linecap:round}
+.wordmark .mark .bd{fill:var(--blue)}
+.wordmark .nm{display:block; font-size:28px; font-weight:700; letter-spacing:-.03em; color:var(--ink)}
+.wordmark .sub{display:block; font-size:13px; font-weight:400; color:var(--graphite); margin-top:5px}
+header.top.scrolled .wordmark .mark{height:38px}
+nav.main{grid-column:6/13; display:flex; gap:34px; justify-content:flex-end; min-width:0}
 nav.main::-webkit-scrollbar{display:none}
 nav.main a{font-size:15px; color:var(--graphite); position:relative; padding:4px 0; transition:color .2s}
 nav.main a::after{content:""; position:absolute; left:0; right:0; bottom:-2px; height:1.5px;
@@ -231,7 +235,10 @@ h4.sub:first-child{margin-top:0}
 @media(max-width:900px){
   .grid{padding:0 20px; gap:16px}
   header.top .grid{padding-top:14px; padding-bottom:10px}
-  .wordmark{grid-column:1/13; font-size:24px}
+  .wordmark{grid-column:1/13}
+  .wordmark .mark{height:38px}
+  .wordmark .nm{font-size:24px}
+  .wordmark .brand{gap:12px}
   nav.main{grid-column:1/13; justify-content:flex-start; flex-wrap:nowrap; gap:22px;
     margin-top:12px; overflow-x:auto; scrollbar-width:none; padding-bottom:4px; min-width:0}
   nav.main a{flex:0 0 auto; font-size:15px}
