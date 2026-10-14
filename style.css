@@ -336,3 +336,5 @@ ol.pubs .thumb{border-radius:10px}
 .brushctl button:first-child{border-radius:999px 0 0 999px}
 .brushctl button:last-child{border-radius:0 999px 999px 0}
 @media(max-width:900px){ .mdfig.card{padding:14px; border-radius:18px} }
+
+.tallyline{font-size:17px; color:var(--graphite); max-width:40em}
