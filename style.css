@@ -204,10 +204,10 @@ ul.news time{font-size:13px; color:var(--graphite); font-variant-numeric:tabular
 .groupfig{margin-top:48px}
 .groupfig figure{grid-column:1/13; animation:rise .9s .2s var(--ease) both}
 .groupfig img{width:100%; aspect-ratio:16/8; object-fit:cover; object-position:center 35%}
-.ph{width:100%; aspect-ratio:1; object-fit:cover; background:var(--mist); display:block}
+.ph{width:100%; aspect-ratio:640/496; object-fit:cover; background:var(--mist); display:block}
 .ph.ini{display:grid; place-items:center; font-size:28px; font-weight:600; color:var(--graphite);
   letter-spacing:.02em}
-.pi2{display:grid; grid-template-columns:220px 1fr; gap:36px; align-items:start}
+.pi2{display:grid; grid-template-columns:260px 1fr; gap:36px; align-items:start}
 .pi2 h3{font-size:24px; font-weight:600; letter-spacing:-.02em}
 .pi2 .tt{font-size:14px; color:var(--graphite); margin-top:4px}
 .pi2 p{font-size:16.5px; line-height:1.55; margin-top:14px; max-width:36em}
@@ -267,7 +267,7 @@ h4.sub:first-child{margin-top:0}
   ul.news li{grid-template-columns:1fr; gap:2px}
   ol.pubs li{grid-template-columns:96px 1fr; gap:16px}
   .pi2{grid-template-columns:1fr; gap:20px}
-  .pi2 .ph{max-width:200px}
+  .pi2 .ph{max-width:260px}
   ul.members{grid-template-columns:1fr 1fr; gap:28px 16px}
   .gallery{grid-template-columns:1fr 1fr; gap:8px}
   .groupfig img{aspect-ratio:4/3}
