@@ -338,3 +338,42 @@ ol.pubs .thumb{border-radius:10px}
 @media(max-width:900px){ .mdfig.card{padding:14px; border-radius:18px} }
 
 .tallyline{font-size:17px; color:var(--graphite); max-width:40em}
+
+/* ---------- photos page: albums, 4:3 grid, full-size viewer ---------- */
+.photos .blockhead{position:sticky; top:96px; text-transform:none; letter-spacing:0}
+.albums{display:flex; flex-direction:column; align-items:flex-start; gap:4px}
+.albums button{font:inherit; font-size:15px; color:var(--graphite); background:none; cursor:pointer;
+  border:1px solid transparent; border-radius:999px; padding:7px 14px}
+.albums button span{font-size:12.5px; margin-left:4px; opacity:.75}
+.albums button:hover{background:var(--mist); color:var(--ink)}
+.albums button[aria-pressed="true"]{color:var(--ink); background:var(--page); border-color:var(--rule)}
+.albumhead{font-size:22px; font-weight:600; letter-spacing:-.015em; margin:0 0 18px}
+.pgrid + .albumhead{margin-top:64px}
+.pgrid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px 16px}
+.pgrid figure{margin:0}
+.pgrid a{display:block; overflow:hidden; border-radius:12px; background:var(--mist)}
+.pgrid img{display:block; width:100%; aspect-ratio:4/3; object-fit:cover; transition:transform .6s var(--ease)}
+.pgrid a:hover img{transform:scale(1.03)}
+.pgrid a:focus-visible{outline:2px solid var(--blue); outline-offset:3px}
+.pgrid figcaption{font-size:13.5px; line-height:1.45; color:var(--graphite); margin-top:10px}
+.pgrid [hidden],.albumhead[hidden],.pgrid[hidden]{display:none}
+.lb{position:fixed; inset:0; width:100%; height:100%; max-width:none; max-height:none; margin:0; padding:0;
+  border:0; background:#0B0B0C; color:#F5F5F7}
+.lb::backdrop{background:#0B0B0C}
+.lb figure{position:absolute; inset:60px 80px 56px; margin:0; display:flex; flex-direction:column;
+  align-items:center; justify-content:center}
+.lb img{max-width:100%; max-height:calc(100% - 44px); object-fit:contain; border-radius:6px}
+.lb figcaption{margin-top:16px; font-size:14px; line-height:1.45; color:#A1A1A6; text-align:center; max-width:42em}
+.lb button{position:absolute; width:48px; height:48px; border:0; border-radius:999px; background:none;
+  color:#F5F5F7; font:inherit; font-size:26px; line-height:1; cursor:pointer}
+.lb button:hover{background:rgba(255,255,255,.1)}
+.lb .x{top:10px; right:12px} .lb .prev{left:16px; top:50%; margin-top:-24px} .lb .next{right:16px; top:50%; margin-top:-24px}
+.lb .count{position:absolute; top:24px; left:28px; font-size:13px; color:#A1A1A6}
+.photolink{margin-top:20px; font-size:15px} .photolink a{color:var(--blue)}
+@media(max-width:900px){
+  .photos .blockhead{position:static}
+  .albums{flex-direction:row; flex-wrap:wrap}
+  .pgrid{grid-template-columns:1fr 1fr; gap:20px 10px}
+  .lb figure{inset:60px 8px 56px}
+  .lb .prev,.lb .next{top:auto; bottom:6px; margin-top:0}
+}

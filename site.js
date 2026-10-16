@@ -340,3 +340,71 @@
     }).observe(fig);
   } else { start(); }
 })();
+
+// Photos page: album filter and a full-size viewer (arrow keys, swipe, Esc).
+(function () {
+  var root = document.querySelector('.photos');
+  if (!root) return;
+  var figs = [].slice.call(root.querySelectorAll('.pgrid figure'));
+
+  function show(album) {
+    root.querySelectorAll('.albums button').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.album === album));
+    });
+    root.querySelectorAll('[data-album]').forEach(function (el) {
+      if (el.tagName === 'BUTTON') return;
+      el.hidden = album !== 'all' && el.dataset.album !== album;
+    });
+    root.querySelectorAll('.pgrid').forEach(function (g) {
+      g.hidden = !g.querySelector('figure:not([hidden])');
+    });
+    try { history.replaceState(null, '', album === 'all' ? location.pathname : '#' + album); } catch (e) {}
+  }
+  root.querySelectorAll('.albums button').forEach(function (b) {
+    b.addEventListener('click', function () { show(b.dataset.album); });
+  });
+  var start = location.hash.slice(1);
+  if (root.querySelector('.albums button[data-album="' + start + '"]')) show(start);
+
+  if (typeof HTMLDialogElement !== 'function') return;   // old browsers: links open the image
+  var lb = document.createElement('dialog');
+  lb.className = 'lb';
+  lb.innerHTML = '<span class="count"></span><figure><img alt=""><figcaption></figcaption></figure>' +
+    '<button class="prev" aria-label="Previous photo">&#8249;</button>' +
+    '<button class="next" aria-label="Next photo">&#8250;</button>' +
+    '<button class="x" aria-label="Close">&#215;</button>';
+  document.body.appendChild(lb);
+  var img = lb.querySelector('img'), cap = lb.querySelector('figcaption'), count = lb.querySelector('.count');
+  var list = [], i = 0;
+
+  function render() {
+    var f = list[i], a = f.querySelector('a'), t = f.querySelector('img');
+    img.src = a.getAttribute('href'); img.alt = t.alt;
+    cap.textContent = f.querySelector('figcaption').textContent;
+    count.textContent = (i + 1) + ' / ' + list.length;
+  }
+  function step(d) { i = (i + d + list.length) % list.length; render(); }
+
+  figs.forEach(function (f) {
+    f.querySelector('a').addEventListener('click', function (e) {
+      e.preventDefault();
+      list = figs.filter(function (g) { return !g.hidden; });
+      i = list.indexOf(f); render(); lb.showModal();
+    });
+  });
+  lb.querySelector('.prev').addEventListener('click', function () { step(-1); });
+  lb.querySelector('.next').addEventListener('click', function () { step(1); });
+  lb.querySelector('.x').addEventListener('click', function () { lb.close(); });
+  lb.addEventListener('click', function (e) { if (e.target === lb || e.target.tagName === 'FIGURE') lb.close(); });
+  lb.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'ArrowRight') step(1);
+  });
+  var x0 = null;
+  lb.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0; x0 = null;
+    if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1);
+  });
+})();
