@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Page not found · Lawrence Lab</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/style.css">
+<script>
+// Old Squarespace paths (jlawrencelab.com, 2018 to 2026) mapped to the new pages.
+(function(){
+  var map={"/home":"/","/research":"/","/cover-page-1":"/","/members":"/people.html","/photos":"/people.html",
+    "/publications":"/publications.html","/teaching":"/education.html","/problem-sets":"/education.html",
+    "/contact":"/join.html","/news-bedford":"/news.html","/new-page-1":"/","/new-page-3":"/",
+    "/home-alt-bedford":"/","/landing-bedford":"/"};
+  var p=location.pathname.replace(/\/+$/,"").toLowerCase();
+  var hit=map[p];
+  if(!hit){ for(var k in map){ if(p.indexOf(k+"/")===0){hit=map[k];break;} } }
+  if(hit) location.replace(hit);
+})();
+</script>
+</head>
+<body>
+
+<header class="top"><div class="grid">
+  <div class="wordmark"><a class="brand" href="/" aria-label="Lawrence Lab, home"><svg class="mark" viewBox="5 8 54 48" aria-hidden="true" focusable="false"><line class="bb" x1="7" y1="32" x2="57" y2="32"/><circle class="bd" cx="12" cy="13.5" r="3.6"/><circle class="bd" cx="12" cy="22.5" r="3.6"/><circle class="bd" cx="12" cy="41.5" r="3.6"/><circle class="bd" cx="12" cy="50.5" r="3.6"/><circle class="bd" cx="22" cy="13.5" r="3.6"/><circle class="bd" cx="22" cy="22.5" r="3.6"/><circle class="bd" cx="22" cy="41.5" r="3.6"/><circle class="bd" cx="22" cy="50.5" r="3.6"/><circle class="bd" cx="32" cy="13.5" r="3.6"/><circle class="bd" cx="32" cy="22.5" r="3.6"/><circle class="bd" cx="32" cy="41.5" r="3.6"/><circle class="bd" cx="32" cy="50.5" r="3.6"/><circle class="bd" cx="42" cy="13.5" r="3.6"/><circle class="bd" cx="42" cy="22.5" r="3.6"/><circle class="bd" cx="42" cy="41.5" r="3.6"/><circle class="bd" cx="42" cy="50.5" r="3.6"/><circle class="bd" cx="52" cy="13.5" r="3.6"/><circle class="bd" cx="52" cy="22.5" r="3.6"/><circle class="bd" cx="52" cy="41.5" r="3.6"/><circle class="bd" cx="52" cy="50.5" r="3.6"/></svg><span class="txt"><span class="nm">Lawrence Lab</span><span class="sub">Louisiana State University</span></span></a></div>
+  <nav class="main">
+    <a href="/">Research</a>
+    <a href="/people.html">People</a>
+    <a href="/publications.html">Publications</a>
+    <a href="/education.html">Education</a>
+    <a href="/news.html">News</a>
+    <a href="/join.html">Join</a>
+  </nav>
+</div></header>
+
+<main class="grid" style="padding:6rem 0 4rem">
+  <section style="grid-column:1/9">
+    <h1>Page not found.</h1>
+    <p>The lab site moved in October 2026. Start from <a href="/">Research</a>, or go to <a href="/people.html">People</a>, <a href="/publications.html">Publications</a>, <a href="/education.html">Education</a>, <a href="/news.html">News</a> or <a href="/join.html">Join</a>.</p>
+  </section>
+</main>
+
+<footer><div class="grid">
+  <div class="a"><strong>Lawrence Lab</strong>
+    Patrick F. Taylor Hall<br>Louisiana State University<br>Baton Rouge, Louisiana</div>
+  <div class="b"><strong>Contact</strong>
+    <a href="mailto:jimmylawrence@lsu.edu">jimmylawrence@lsu.edu</a></div>
+  <div class="c"><strong>Funding</strong>
+    NSF &middot; NIH &middot; ACS PRF<br>Albemarle Foundation &middot; BASF<br>Louisiana Board of Regents<br>LSU College of Engineering</div>
+</div></footer>
+
+</body>
+</html>

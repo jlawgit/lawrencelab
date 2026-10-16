@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /logo/
+Disallow: /logo-options.html
+Sitemap: https://www.jlawrencelab.com/sitemap.xml
